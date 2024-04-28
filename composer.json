@@ -1,5 +1,5 @@
 {
-    "name": "osio/magento-assembly-service",
+    "name": "BIWAC/magento-assembly-service",
     "description": "Assembly Service",
     "type": "magento2-module",
     "license": "proprietary",

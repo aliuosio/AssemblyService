@@ -1,26 +1,26 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    Osio_AssemblyService
- * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuBIWAC)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Osio\AssemblyService\Setup\Patch\Data;
+namespace BIWAC\AssemblyService\Setup\Patch\Data;
 
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Validator\ValidateException;
-use Osio\AssemblyService\Setup\AttributeAdd;
+use BIWAC\AssemblyService\Setup\AttributeAdd;
 
 class AttributeAssemblyService implements DataPatchInterface
 {
-    const string LABEL = 'Assembly Service';
-    const string CODE = 'assembly_service';
+    const LABEL = 'Assembly Service';
+    const CODE = 'assembly_service';
 
     public function __construct(
         readonly private AttributeAdd $attributeAdd

@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    Osio_AssemblyService
- * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuBIWAC)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Osio\AssemblyService\Setup;
+namespace BIWAC\AssemblyService\Setup;
 
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Setup\EavSetup;
@@ -19,7 +19,7 @@ use Magento\Framework\Validator\ValidateException;
 
 class AttributeAdd
 {
-    const string GROUP = 'Assembly Service';
+    const GROUP = 'Assembly Service';
 
     public function __construct(
         readonly private ModuleDataSetupInterface $moduleDataSetup,
