@@ -17,9 +17,9 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Validator\ValidateException;
 
-class AttributesAdd
+class AttributeAdd
 {
-    const GROUP = 'Assembly Service';
+    const string GROUP = 'Assembly Service';
 
     public function __construct(
         readonly private ModuleDataSetupInterface $moduleDataSetup,
@@ -78,6 +78,19 @@ class AttributesAdd
             $code,
             $attributeProperties
         );
+    }
+
+    /**
+     * @throws LocalizedException
+     * @throws ValidateException
+     */
+    public function run(string $code, array $attributes): void
+    {
+        $this->getModuleDataSetup()->startSetup();
+        $this->createAttributeGroup();
+        $this->getAddAttribute($code, $attributes);
+        $this->addToAttributeSets($code);
+        $this->getModuleDataSetup()->endSetup();
     }
 
 }

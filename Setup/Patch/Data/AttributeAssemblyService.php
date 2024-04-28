@@ -15,15 +15,15 @@ use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Validator\ValidateException;
-use Osio\AssemblyService\Setup\AttributesAdd;
+use Osio\AssemblyService\Setup\AttributeAdd;
 
 class AttributeAssemblyService implements DataPatchInterface
 {
-    const LABEL = 'Assembly Service';
-    const CODE = 'assembly_service';
+    const string LABEL = 'Assembly Service';
+    const string CODE = 'assembly_service';
 
     public function __construct(
-        readonly private AttributesAdd $attributesAdd
+        readonly private AttributeAdd $attributeAdd
     ) {}
 
     private function getAttributeProperties(): array
@@ -50,11 +50,7 @@ class AttributeAssemblyService implements DataPatchInterface
      */
     public function apply(): void
     {
-        $this->attributesAdd->getModuleDataSetup()->startSetup();
-        $this->attributesAdd->createAttributeGroup();
-        $this->attributesAdd->getAddAttribute(self::CODE, $this->getAttributeProperties());
-        $this->attributesAdd->addToAttributeSets(self::CODE);
-        $this->attributesAdd->getModuleDataSetup()->endSetup();
+        $this->attributeAdd->run(self::CODE, $this->getAttributeProperties());
     }
 
     public static function getDependencies(): array
@@ -66,4 +62,5 @@ class AttributeAssemblyService implements DataPatchInterface
     {
         return [];
     }
+
 }
