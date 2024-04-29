@@ -17,6 +17,6 @@ class ProductClass extends AbstractDb
 {
     protected function _construct(): void
     {
-        $this->_init('assembly-service_product_class', 'id');
+        $this->_init('assembly_service_product_class', 'id');
     }
 }
