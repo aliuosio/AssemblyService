@@ -11,7 +11,7 @@
 
 namespace BIWAC\AssemblyService\Model;
 
-use BIWAC\Api\ConfigInterface;
+use BIWAC\AssemblyService\Api\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config implements ConfigInterface

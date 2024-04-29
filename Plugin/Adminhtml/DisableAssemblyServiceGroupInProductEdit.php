@@ -11,12 +11,13 @@
 
 namespace BIWAC\AssemblyService\Plugin\Adminhtml;
 
-use BIWAC\AssemblyService\Model\Config;
+
+use BIWAC\AssemblyService\Api\ConfigInterface;
 
 class DisableAssemblyServiceGroupInProductEdit {
 
     public function __construct(
-        readonly private Config $config
+        readonly private ConfigInterface $config
     )
     {}
 
