@@ -10,6 +10,7 @@
 
 namespace BIWAC\AssemblyService\Block\Adminhtml\System\Config;
 
+
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Component\ComponentRegistrar;
@@ -18,8 +19,6 @@ use Magento\Framework\Serialize\Serializer\Json;
 
 class Version extends Field
 {
-    private Json $json;
-    private ComponentRegistrar $componentRegistrar;
 
     /**
      * @param ComponentRegistrar $componentRegistrar
@@ -28,14 +27,12 @@ class Version extends Field
      * @param array $data
      */
     public function __construct(
-        ComponentRegistrar $componentRegistrar,
-        Json               $json,
-        Context            $context,
+        readonly private ComponentRegistrar $componentRegistrar,
+        readonly private Json               $json,
+        readonly private Context            $context,
         array              $data = []
     ) {
         parent::__construct($context, $data);
-        $this->json = $json;
-        $this->componentRegistrar = $componentRegistrar;
     }
 
 

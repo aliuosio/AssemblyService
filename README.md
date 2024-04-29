@@ -1,6 +1,7 @@
 ## Assembly Service
 
 ### TODOS
+* ~~add config to turn module turn module on/off~~
 * create **attribute products assembly service** (Type: radio, Values: true/false) (not visible in frontend only admin)
 * create **attribute products Delivery Category** for  (Type: select, Values: dummies (takes values later from table delievery Category)) (not visible in frontend only admin)
 * make **attribute products Delivery Category** visible/dependent on selection of assembly service
