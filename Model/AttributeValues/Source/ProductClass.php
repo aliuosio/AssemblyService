@@ -26,9 +26,11 @@ class ProductClass extends AbstractSource
         $options = [];
         $collection = $this->optionCollectionFactory->create();
         $collection->getSelect()->group('main_table.class_id');
+        $options[] = ['label' => 'No extra costs', 'value' => 0];
         foreach ($collection as $item) {
             $options[] = ['label' => $item->getClassId(), 'value' => $item->getClassId()];
         }
+
         return $options;
     }
 }
