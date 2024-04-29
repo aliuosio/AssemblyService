@@ -18,4 +18,8 @@ interface ConfigInterface
 
     public function getGroupKey(): string;
 
+    public function getSKU(): string;
+
+    public function getAssemblyServicePrice(): string;
+
 }

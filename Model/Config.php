@@ -17,8 +17,10 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 class Config implements ConfigInterface
 {
 
-    public const ENABLED = 'BIWAC/settings/enabled';
-    public const GROUP_KEY = 'BIWAC/settings/product_edit/group_key';
+    private const ENABLED = 'BIWAC/settings/enabled';
+    private const GROUP_KEY = 'BIWAC/settings/product_edit/group_key';
+    private const SKU = 'BIWAC/settings/product/sku';
+    private const ASSEMBLY_PRICE = 'BIWAC/settings/assembly/price';
 
     public function __construct(
         readonly private ScopeConfigInterface $scopeConfig
@@ -32,5 +34,15 @@ class Config implements ConfigInterface
     public function getGroupKey(): string
     {
         return $this->scopeConfig->getValue(self::GROUP_KEY);
+    }
+
+    public function getSKU(): string
+    {
+        return $this->scopeConfig->getValue(self::SKU);
+    }
+
+    public function getAssemblyServicePrice(): string
+    {
+        return $this->scopeConfig->getValue(self::ASSEMBLY_PRICE);
     }
 }

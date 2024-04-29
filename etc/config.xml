@@ -17,6 +17,12 @@
                 <product_edit>
                     <group_key>assembly-service</group_key>
                 </product_edit>
+                <product>
+                    <sku>ASSEMBLY_SERVICE</sku>
+                </product>
+                <assembly>
+                    <price>299.00</price>
+                </assembly>
             </settings>
         </BIWAC>
     </default>

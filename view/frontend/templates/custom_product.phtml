@@ -1,0 +1,24 @@
+<?php
+/** @var $block AssemblyService */
+
+use BIWAC\AssemblyService\Block\Product\AssemblyService;
+use Magento\Framework\Exception\NoSuchEntityException;
+
+try {
+    $product = $block->getProduct();
+} catch (
+    NoSuchEntityException $e) {
+}
+?>
+<div class="custom-product">
+    <?php if (isset($product)): ?>
+        <h2><?php echo $product->getName(); ?></h2>
+        <p><?php echo $product->getShortDescription(); ?></p>
+        <button type="button"
+                title="<?php echo __('Add to Cart'); ?>"
+                class="action tocart primary custom-add-to-cart"
+                data-product-id="<?php echo $product->getId(); ?>">
+            <span><?php echo __('Add to Cart'); ?></span>
+        </button>
+    <?php endif; ?>
+</div>
