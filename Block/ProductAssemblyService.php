@@ -13,14 +13,17 @@ namespace BIWAC\AssemblyService\Block;
 use BIWAC\AssemblyService\Api\ConfigInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Framework\Registry;
 
 class ProductAssemblyService extends Template
 {
 
     public function __construct(
+        readonly private ListProduct $listProduct,
         readonly private ConfigInterface $config,
         readonly private ProductRepositoryInterface $productRepository,
         Context $context,
@@ -34,7 +37,37 @@ class ProductAssemblyService extends Template
      */
     public function getProduct(): ProductInterface
     {
-        $sku = $this->config->getSKU();
         return $this->productRepository->get($this->config->getSKU());
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function getAddToCartUrl(): string
+    {
+        return $this->listProduct->getAddToCartUrl($this->getProduct());
+    }
+
+    public function getConfig(): ConfigInterface
+    {
+        return $this->config;
+    }
+
+    public function getParentProduct(): ?ProductInterface
+    {
+        try {
+            return $this->productRepository->getById(
+                $this->getRequest()->getParam('id')
+            );
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
+    }
+
+    public function hasParentAssemblyService(): bool
+    {
+        return (bool)$this->getParentProduct()->getData(
+            $this->getConfig()->getAttributeAssemblyName()
+        );
     }
 }

@@ -19,6 +19,7 @@
                 </product_edit>
                 <product>
                     <sku>ASSEMBLY_SERVICE</sku>
+                    <attribute_name>assembly_service</attribute_name>
                 </product>
                 <assembly>
                     <price>299.00</price>

@@ -21,6 +21,7 @@ class Config implements ConfigInterface
     private const GROUP_KEY = 'BIWAC/settings/product_edit/group_key';
     private const SKU = 'BIWAC/settings/product/sku';
     private const ASSEMBLY_PRICE = 'BIWAC/settings/assembly/price';
+    private const ATTRIBUTE_ASSEMBLY = 'BIWAC/settings/product/attribute_name';
 
     public function __construct(
         readonly private ScopeConfigInterface $scopeConfig
@@ -44,5 +45,10 @@ class Config implements ConfigInterface
     public function getAssemblyServicePrice(): string
     {
         return $this->scopeConfig->getValue(self::ASSEMBLY_PRICE);
+    }
+
+    public function getAttributeAssemblyName(): string
+    {
+        return $this->scopeConfig->getValue(self::ATTRIBUTE_ASSEMBLY);
     }
 }

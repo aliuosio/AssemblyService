@@ -1,24 +1,36 @@
 <?php
-/** @var  ProductAssemblyService $block */
+/** @var ProductAssemblyService $block */
 
 use BIWAC\AssemblyService\Block\ProductAssemblyService;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 try {
-    $secondaryProduct = $block->getProduct();
+    $assemblyProduct = $block->getProduct();
 } catch (NoSuchEntityException $e) {
+    echo $e->getMessage();
 }
 ?>
-<?php if (isset($secondaryProduct)): ?>
-    <div class="secondary-product-details">
-        <h2><?php echo $secondaryProduct->getName(); ?></h2>
-        <div class="price"><?php echo $secondaryProduct->getPrice(); ?></div>
-        <form data-role="tocart-form" action="<?php echo $block->getSubmitUrl($secondaryProduct); ?>" method="post">
-            <input type="hidden" name="product" value="<?php echo $secondaryProduct->getId(); ?>">
-            <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>">
-            <button type="submit" class="action tocart primary">
-                <span><?php echo __('Add to Cart'); ?></span>
-            </button>
+
+<?php if (isset($assemblyProduct) && $block->getConfig()->isEnabled() && $block->hasParentAssemblyService()): ?>
+    <div id="product-recommendation-detailpage-related-placeholder" class="closed">
+        <form data-role="tocart-form" action="<?php try {
+            echo $block->getAddToCartUrl();
+        } catch (NoSuchEntityException $e) {
+            echo $e->getMessage();
+        } ?>" method="post">
+            <h3><?php echo $assemblyProduct->getName(); ?></h3>
+            <div class="price-box price-final_price"
+                 data-role="priceBox"
+                 data-product-id="<?php echo $assemblyProduct->getId() ?>"
+                 data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
+                <span class="price"><?php echo $assemblyProduct->getPrice(); ?></span>
+            </div>
+            <?php echo $block->getBlockHtml('formkey')?>
+            <div class="btn">
+                <button type="submit" title="Add to Cart" class="action tocart primary">
+                    <span>Add to Cart</span>
+                </button>
+            </div>
         </form>
     </div>
 <?php endif; ?>
