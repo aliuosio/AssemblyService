@@ -1,9 +1,9 @@
 {
-    "name": "BIWAC/magento-assembly-service",
+    "name": "biwac/magento-assembly-service",
     "description": "Assembly Service",
     "type": "magento2-module",
     "license": "proprietary",
-    "version": "dev-main",
+    "version": "dev-develop",
     "authors": [
         {
             "name": "Osiozekhai Aliu"
