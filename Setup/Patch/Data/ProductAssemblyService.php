@@ -3,13 +3,13 @@
 namespace BIWAC\AssemblyService\Setup\Patch\Data;
 
 use BIWAC\AssemblyService\Api\ConfigInterface;
+use Magento\Catalog\Api\Data\ProductCustomOptionInterface;
 use Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory;
 use Magento\Catalog\Api\ProductCustomOptionRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
-use Magento\Catalog\Model\Product\Option;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
@@ -23,6 +23,21 @@ use Magento\CatalogInventory\Model\StockRegistry;
 
 class ProductAssemblyService implements DataPatchInterface
 {
+    private array $options  = [
+        [
+            'title' => 'Parent Product',
+            'type' => 'field',
+            'is_require' => false,
+            'sort_order' => 0,
+        ],
+        [
+            'title' => 'Product Class Price',
+            'type' => 'field',
+            'is_require' => false,
+            'sort_order' => 1,
+        ]
+    ];
+
     public function __construct(
         readonly private ConfigInterface $config,
         readonly private State $appState,
@@ -43,8 +58,10 @@ class ProductAssemblyService implements DataPatchInterface
     public function apply(): void
     {
         $this->appState->setAreaCode(Area::AREA_ADMINHTML);
+
         $product = $this->setProduct();
-        $product = $this->productRepository->save($product);
+        $this->productRepository->save($product);
+
         $this->setStock($product);
         $this->addCustomOptions($product);
     }
@@ -93,24 +110,20 @@ class ProductAssemblyService implements DataPatchInterface
      */
     private function addCustomOptions(ProductInterface $product): void
     {
-        $options = [
-            [
-                'title' => 'drop_down option',
-                'type' => 'drop_down',
-                'is_require' => true,
-                'sort_order' => 4,
-                'values' => [],
-            ]
-        ];
-
-        foreach ($options as $arrayOption) {
-            $option = $this->customOptionFactory->create()
+        foreach ($this->options as $arrayOption) {
+            $option = $this->getCustomOption()
                 ->setProductId($product->getId())
+                ->setProductSku($this->config->getSKU())
                 ->addData($arrayOption);
             $this->customOptionRepository->save($option);
             $product->addOption($option);
         }
 
         $this->productRepository->save($product);
+    }
+
+    private function getCustomOption(): ProductCustomOptionInterface
+    {
+        return $this->customOptionFactory->create();
     }
 }
