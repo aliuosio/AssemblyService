@@ -1,10 +1,19 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author     Osiozekhai Aliu
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 BIWAC
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+-->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
-            <block class="BIWAC\AssemblyService\Block\Product\AssemblyService" name="custom.product"
-                   template="BIWAC\AssemblyService::custom_product.phtml" after="product.info.addtocart"/>
+        <referenceContainer name="product.info.addtocart">
+            <block class="BIWAC\AssemblyService\Block\ProductAssemblyService"
+                   template="BIWAC_AssemblyService::product-assembly-service.phtml"/>
         </referenceContainer>
     </body>
 </page>

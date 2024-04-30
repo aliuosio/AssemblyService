@@ -61,9 +61,9 @@ class ProductAssemblyService implements DataPatchInterface
 
         $product = $this->setProduct();
         $this->productRepository->save($product);
-
         $this->setStock($product);
-        $this->addCustomOptions($product);
+
+        // $this->addCustomOptions($product);
     }
 
     public static function getDependencies(): array

@@ -1,0 +1,24 @@
+<?php
+/** @var  ProductAssemblyService $block */
+
+use BIWAC\AssemblyService\Block\ProductAssemblyService;
+use Magento\Framework\Exception\NoSuchEntityException;
+
+try {
+    $secondaryProduct = $block->getProduct();
+} catch (NoSuchEntityException $e) {
+}
+?>
+<?php if (isset($secondaryProduct)): ?>
+    <div class="secondary-product-details">
+        <h2><?php echo $secondaryProduct->getName(); ?></h2>
+        <div class="price"><?php echo $secondaryProduct->getPrice(); ?></div>
+        <form data-role="tocart-form" action="<?php echo $block->getSubmitUrl($secondaryProduct); ?>" method="post">
+            <input type="hidden" name="product" value="<?php echo $secondaryProduct->getId(); ?>">
+            <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>">
+            <button type="submit" class="action tocart primary">
+                <span><?php echo __('Add to Cart'); ?></span>
+            </button>
+        </form>
+    </div>
+<?php endif; ?>

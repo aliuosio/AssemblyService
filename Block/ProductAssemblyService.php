@@ -8,26 +8,25 @@
  * file that was distributed with this source code.
  */
 
-namespace BIWAC\AssemblyService\Block\Product;
+namespace BIWAC\AssemblyService\Block;
 
 use BIWAC\AssemblyService\Api\ConfigInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Block\Product\View;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
-class AssemblyService extends View
+class ProductAssemblyService extends Template
 {
-    protected $productRepository;
 
     public function __construct(
         readonly private ConfigInterface $config,
+        readonly private ProductRepositoryInterface $productRepository,
         Context $context,
-        ProductRepositoryInterface $productRepository,
         array $data = []
     ) {
-        $this->productRepository = $productRepository;
+        parent::__construct($context, $data);
     }
 
     /**
@@ -35,6 +34,7 @@ class AssemblyService extends View
      */
     public function getProduct(): ProductInterface
     {
+        $sku = $this->config->getSKU();
         return $this->productRepository->get($this->config->getSKU());
     }
 }
