@@ -26,13 +26,6 @@ class ProductClass extends AbstractModifier
 
     public function modifyMeta(array $meta): array
     {
-        // Retrieve the value of the assembly_service attribute from the data array
-        $assemblyServiceValue = $this->data['assembly_service'];
-
-        // Check the condition (e.g., assembly_service value equals 1)
-        $isVisible = ($assemblyServiceValue == 1);
-
-        // Modify the meta array for the product_class attribute
         $productClassPath = $this->arrayManager->findPath('product_class', $meta, null, 'children');
         if ($productClassPath) {
             $meta = $this->arrayManager->merge(
@@ -42,7 +35,7 @@ class ProductClass extends AbstractModifier
                     'arguments' => [
                         'data' => [
                             'config' => [
-                                'visible' => $isVisible
+                                'visible' => ($this->data['assembly_service'] == 1)
                             ]
                         ]
                     ]
@@ -55,6 +48,6 @@ class ProductClass extends AbstractModifier
 
     public function modifyData(array $data)
     {
-        // TODO: Implement modifyData() method.
+
     }
 }
