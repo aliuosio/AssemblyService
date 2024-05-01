@@ -31,7 +31,7 @@ class AttributeProductClass implements DataPatchInterface
             'type' => 'int',
             'label' => self::LABEL,
             'input' => 'select',
-            'source' => 'BIWAC\AssemblyService\Model\AttributeValues\Source\ProductClass',
+            'source' => 'BIWAC\ProductClassToPostcode\Model\AttributeValues\Source\ProductClass',
             'required' => false,
             'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
             'visible' => true,
