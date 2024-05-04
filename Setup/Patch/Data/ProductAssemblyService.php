@@ -23,8 +23,30 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 class ProductAssemblyService implements DataPatchInterface
 {
+
+    /*
+     - add custom options to generated assembly service productt
+    Options
+
+    * product to assemble name X
+    * product to assemble sku X
+    * product to assemble class X
+    * customer postcode
+
+    product class and postcode price
+     */
+
     const OPTIONS = [
         '0' => [
+            'sort_order' => '0',
+            'title' => 'Product to Assemble',
+            'price_type' => 'fixed',
+            'price' => '0',
+            'type' => 'field',
+            'is_require' => '1',
+            'is_hidden' => '1',
+        ],
+        '1' => [
             'sort_order' => '1',
             'title' => 'Product to Assemble SKU',
             'price_type' => 'fixed',
@@ -33,10 +55,28 @@ class ProductAssemblyService implements DataPatchInterface
             'is_require' => '1',
             'is_hidden' => '1',
         ],
-        '1' => [
+        '2' => [
             'sort_order' => '2',
-            'title' => 'Product Class Price',
+            'title' => 'Product to assemble class',
             'price_type' => 'fixed',
+            'price' => '0',
+            'type' => 'field',
+            'is_require' => '0',
+            'is_hidden' => '1',
+        ],
+        '3' => [
+            'sort_order' => '3',
+            'title' => 'customer postcode',
+            'price_type' => 'fixed',
+            'price' => '0',
+            'type' => 'field',
+            'is_require' => '1',
+            'is_hidden' => '0',
+        ],
+        '4' => [
+            'sort_order' => '4',
+            'title' => 'Postcode Price',
+            'price_type' => 'dynamic',
             'price' => '0',
             'type' => 'field',
             'is_require' => '0',
