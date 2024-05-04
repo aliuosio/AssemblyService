@@ -3,7 +3,6 @@
 namespace BIWAC\AssemblyService\Setup\Patch\Data;
 
 use BIWAC\AssemblyService\Api\ConfigInterface;
-use Magento\Catalog\Api\Data\ProductCustomOptionInterface;
 use Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
@@ -66,7 +65,7 @@ class ProductAssemblyService implements DataPatchInterface
         ],
         '3' => [
             'sort_order' => '3',
-            'title' => 'customer postcode',
+            'title' => 'Customer Postcode',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
@@ -76,10 +75,10 @@ class ProductAssemblyService implements DataPatchInterface
         '4' => [
             'sort_order' => '4',
             'title' => 'Postcode Price',
-            'price_type' => 'dynamic',
-            'price' => '0',
+            'price_type' => 'fixed',
+             'price' => '0',
             'type' => 'field',
-            'is_require' => '0',
+            'is_require' => '1',
             'is_hidden' => '1',
         ]
     ];
@@ -160,11 +159,10 @@ class ProductAssemblyService implements DataPatchInterface
     {
         foreach (self::OPTIONS as $arrayOption) {
             $option = $this->customOptionFactory->create();
-            $option->setProductId($product->getId())
-                ->setProductSku($product->getSku())
-                ->setStoreId($product->getStoreId())
+            $option->setProductSku($product->getSku())
                 ->addData($arrayOption);
             $this->customOptionRepository->save($option);
+
             $product->addOption($option);
         }
     }
