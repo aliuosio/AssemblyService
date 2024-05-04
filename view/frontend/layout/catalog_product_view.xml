@@ -11,9 +11,12 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="product.info.social">
+        <referenceContainer name="product.info.main" >
             <block class="BIWAC\AssemblyService\Block\ProductAssemblyService"
-                   template="BIWAC_AssemblyService::product-assembly-service.phtml"/>
+                   name="product.assembly.service"
+                   template="BIWAC_AssemblyService::product-assembly-service.phtml"
+                   cacheable="false"
+            />
         </referenceContainer>
     </body>
 </page>
