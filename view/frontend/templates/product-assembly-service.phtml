@@ -25,28 +25,31 @@ try {
             </div>
 
             <div class="product-options-wrapper" id="product-options-wrapper">
-                <?php $options = $assemblyProduct->getOptions(); ?>
-                <?php for ($x = 0; $x < count($options); $x++): ?>
-                    <?php $display = ($x == 3) ? 'text' : 'hidden'; ?>
-                    <?php $max = ($x == 3) ? 'maxlength="5"' : 'hidden'; ?>
-                    <?php $min = ($x == 3) ? 'minlength="5"' : 'hidden'; ?>
-                    <?php $option = $options[$x]; ?>
-                    <?php
-                    if ($x === 3)
-                        echo '<label class="label" for="Customer Postcode"><span>' . $option->getTitle() . '</span></label>';
-                    ?>
-                    <input type="<?php echo $display; ?>"
-                           name="options[<?php echo $option->getId(); ?>]"
-                        <?php if (isset($block->getOptionValues()[$x])) : ?>
-                            value="<?php echo $block->getOptionValues()[$x]; ?>"
-                           <?php endif; ?>
-                        <?php echo $max; ?><?php echo $min; ?>
-                    />
-                <?php endfor; ?>
+                <?php $x = 0;?>
+                <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
+                    <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Customer Postcode'): ?>
+                        <input type="text"
+                               name="options[<?php echo $option->getId(); ?>]"
+                               value="<?php echo $block->getOptionValues()[$x];?>"
+                               width="5"
+                               minlength="5"
+                               maxlength="5"
+                               style="width: 50px"
+                        />
+                        <span class="postcode-price" style="margin-left: 10px;"></span>
+                        <input type="hidden" name="postcode-price" class="postcode-price" value=""/>
+                    <?php elseif ($block->getOptionValues()[$x]): ?>
+                        <input type="hidden"
+                               name="options[<?php echo $option->getId(); ?>]"
+                               value="<?php echo $block->getOptionValues()[$x];?>"
+                        />
+                    <?php endif; ?>
+                <?php ++$x; ?>
+                <?php endforeach; ?>
             </div>
 
             <?php echo $block->getBlockHtml('formkey') ?>
-            <div class="btn">
+            <div class="btn" style="margin-top: 20px;">
                 <button type="submit" title="Add to Cart" class="action tocart primary">
                     <span><?php echo __('Add to Cart'); ?></span>
                 </button>
@@ -54,3 +57,16 @@ try {
         </form>
     </div>
 <?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "BIWAC_AssemblyService/js/postcode" : {
+            }
+        }
+    }
+</script>
+<script type="javascript">
+    require(['jquery', 'postcode'], function($, postcode) {
+        postcode();
+    });
+</script>

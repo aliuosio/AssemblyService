@@ -78,7 +78,7 @@ class ProductAssemblyService extends Template
             $this->getParentProduct()->getName(),
             $this->getParentProduct()->getSku(),
             $this->getParentProduct()->getData('product_class'),
-            0
+            ''
         ];
     }
 
