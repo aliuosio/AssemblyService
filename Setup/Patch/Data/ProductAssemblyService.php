@@ -43,7 +43,6 @@ class ProductAssemblyService implements DataPatchInterface
             'price' => '0',
             'type' => 'field',
             'is_require' => '1',
-            'is_hidden' => '1',
         ],
         '1' => [
             'sort_order' => '1',
@@ -52,7 +51,6 @@ class ProductAssemblyService implements DataPatchInterface
             'price' => '0',
             'type' => 'field',
             'is_require' => '1',
-            'is_hidden' => '1',
         ],
         '2' => [
             'sort_order' => '2',
@@ -61,7 +59,6 @@ class ProductAssemblyService implements DataPatchInterface
             'price' => '0',
             'type' => 'field',
             'is_require' => '0',
-            'is_hidden' => '1',
         ],
         '3' => [
             'sort_order' => '3',
@@ -69,17 +66,8 @@ class ProductAssemblyService implements DataPatchInterface
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
-            'is_require' => '1',
-            'is_hidden' => '0',
-        ],
-        '4' => [
-            'sort_order' => '4',
-            'title' => 'Postcode Price',
-            'price_type' => 'fixed',
-             'price' => '0',
-            'type' => 'field',
-            'is_require' => '1',
-            'is_hidden' => '1',
+            'is_require' => '0',
+            'max_characters' => '5',
         ]
     ];
 

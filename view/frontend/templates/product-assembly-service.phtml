@@ -15,19 +15,40 @@ try {
         <form data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
-            echo $e->getMessage();
         } ?>" method="post">
             <h3><?php echo $assemblyProduct->getName(); ?></h3>
             <div class="price-box price-final_price"
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
-                <span class="price"><?php echo $assemblyProduct->getPrice(); ?></span>
+                <span class="price"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
-            <?php echo $block->getBlockHtml('formkey')?>
+
+            <div class="product-options-wrapper" id="product-options-wrapper">
+                <?php $options = $assemblyProduct->getOptions(); ?>
+                <?php for ($x = 0; $x < count($options); $x++): ?>
+                    <?php $display = ($x == 3) ? 'text' : 'hidden'; ?>
+                    <?php $max = ($x == 3) ? 'maxlength="5"' : 'hidden'; ?>
+                    <?php $min = ($x == 3) ? 'minlength="5"' : 'hidden'; ?>
+                    <?php $option = $options[$x]; ?>
+                    <?php
+                    if ($x === 3)
+                        echo '<label class="label" for="Customer Postcode"><span>' . $option->getTitle() . '</span></label>';
+                    ?>
+                    <input type="<?php echo $display; ?>"
+                           name="options[<?php echo $option->getId(); ?>]"
+                        <?php if (isset($block->getOptionValues()[$x])) : ?>
+                            value="<?php echo $block->getOptionValues()[$x]; ?>"
+                           <?php endif; ?>
+                        <?php echo $max; ?><?php echo $min; ?>
+                    />
+                <?php endfor; ?>
+            </div>
+
+            <?php echo $block->getBlockHtml('formkey') ?>
             <div class="btn">
                 <button type="submit" title="Add to Cart" class="action tocart primary">
-                    <span>Add to Cart</span>
+                    <span><?php echo __('Add to Cart'); ?></span>
                 </button>
             </div>
         </form>

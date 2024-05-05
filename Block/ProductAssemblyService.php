@@ -15,14 +15,15 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Pricing\Helper\Data as PriceHeloer;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Framework\Registry;
 
 class ProductAssemblyService extends Template
 {
 
     public function __construct(
+        readonly private PriceHeloer $priceHeloer,
         readonly private ListProduct $listProduct,
         readonly private ConfigInterface $config,
         readonly private ProductRepositoryInterface $productRepository,
@@ -69,5 +70,20 @@ class ProductAssemblyService extends Template
         return (bool)$this->getParentProduct()->getData(
             $this->getConfig()->getAttributeAssemblyName()
         );
+    }
+
+    public function getOptionValues(): array
+    {
+        return [
+            $this->getParentProduct()->getName(),
+            $this->getParentProduct()->getSku(),
+            $this->getParentProduct()->getData('product_class'),
+            0
+        ];
+    }
+
+    public function getPriceFormattted(float $price): float|string
+    {
+        return $this->priceHeloer->currency($price);
     }
 }
