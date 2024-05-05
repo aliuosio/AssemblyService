@@ -18,6 +18,7 @@
                     <group_key>assembly-service</group_key>
                 </product_edit>
                 <product>
+                    <class>product_class</class>
                     <sku>ASSEMBLY_SERVICE</sku>
                     <attribute_name>assembly_service</attribute_name>
                 </product>
