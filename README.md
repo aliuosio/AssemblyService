@@ -1,8 +1,8 @@
 ## Assembly Service
  
     composer config minimum-stability dev \
-        && composer config repositories.assembly git https://github.com/aliuosio/advastore-php.git \
-        && composer config repositories.class git https://github.com:aliuosio/ProductClassToPostcode.git \
+        && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
+        && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
         && composer require biwac/magento-assembly-service \
         && bin/magento setup:upgrade \
         && bin/magento cache:clean;
