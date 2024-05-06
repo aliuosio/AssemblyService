@@ -12,7 +12,7 @@ try {
 ?>
 <?php if (isset($assemblyProduct) && $block->getConfig()->isEnabled() && $block->hasParentAssemblyService()): ?>
     <div id="product-recommendation-detailpage-related-placeholder" class="closed">
-        <form data-role="tocart-form" action="<?php try {
+        <form id="assembly-service" data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
@@ -28,7 +28,8 @@ try {
                 <?php $x = 0;?>
                 <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
                     <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Postcode'): ?>
-                        <input type="text"
+                            <label>Postcode: </label>
+                            <input type="text"
                                id="postcode"
                                name="options[<?php echo $option->getId(); ?>]"
                                value="<?php echo $block->getOptionValues()[$x];?>"

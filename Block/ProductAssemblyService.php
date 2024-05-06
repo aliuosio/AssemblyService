@@ -30,7 +30,8 @@ class ProductAssemblyService extends Template
         readonly private ProductRepositoryInterface $productRepository,
         Context                                     $context,
         array                                       $data = []
-    ) {
+    )
+    {
         parent::__construct($context, $data);
     }
 
@@ -45,29 +46,12 @@ class ProductAssemblyService extends Template
     public function getAddToCartUrl(): string
     {
         try {
-            $product = $this->getProduct();
-            $x = 0;
-            $customOptions = [];
-            foreach ($this->getProduct()->getOptions() as $option) {
-                if ($option->getTitle() != 'Postcode') {
-                    $customOptions[$option->getId()] = $this->getOptionValues()[$x];
-                }
-                ++$x;
-            }
-
-            // Construct query parameters
-            $params = [
-                'product' => $product->getId(),
-                'form_key' => $this->formKey->getFormKey(),
-                'options' => $customOptions, // Include custom options in the URL
-                // You can add additional parameters here if needed
-            ];
-
-            // Generate the URL
-            return $this->getUrl('checkout/cart/add', ['_query' => $params]);
+            return $this->getUrl(
+                'checkout/cart/add',
+                ['_query' => $this->getAllCustomOptions()]
+            );
         } catch (NoSuchEntityException $e) {
-            // Handle exception (e.g., log error, return default URL)
-            return ''; // Return empty string as fallback
+            return '';
         } catch (LocalizedException $e) {
         }
     }
@@ -126,5 +110,46 @@ class ProductAssemblyService extends Template
         return array_map(function ($option) {
             return $option->getId();
         }, $this->getProduct()->getOptions());
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function getAssemblyCustomOptions(): array
+    {
+        $customOptions = [];
+        $options = $this->getProduct()->getOptions();
+
+        for ($i = 0; $i < count($options); $i++) {
+            if ($this->getTitle($i) != 'Postcode') {
+                $customOptions[$options[$i]->getId()] = $this->getOptionValues()[$i];
+            }
+        }
+
+        return $customOptions;
+    }
+
+
+    /**
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
+     */
+    public function getAllCustomOptions(): array
+    {
+        return [
+            'product' => $this->getProduct()->getId(),
+            'form_key' => $this->formKey->getFormKey(),
+            'options' => $this->getAssemblyCustomOptions(),
+        ];
+    }
+
+    /**
+     * @param int $i
+     * @return string
+     * @throws NoSuchEntityException
+     */
+    public function getTitle(int $i): string
+    {
+        return $this->getProduct()->getOptions()[$i]->getTitle();
     }
 }
