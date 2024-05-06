@@ -13,7 +13,8 @@ namespace BIWAC\AssemblyService\Block;
 use BIWAC\AssemblyService\Api\ConfigInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Block\Product\ListProduct;
+use Magento\Framework\Data\Form\FormKey;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Pricing\Helper\Data as PriceHeloer;
 use Magento\Framework\View\Element\Template;
@@ -23,12 +24,12 @@ class ProductAssemblyService extends Template
 {
 
     public function __construct(
-        readonly private PriceHeloer $priceHeloer,
-        readonly private ListProduct $listProduct,
-        readonly private ConfigInterface $config,
+        readonly private FormKey                    $formKey,
+        readonly private PriceHeloer                $priceHeloer,
+        readonly private ConfigInterface            $config,
         readonly private ProductRepositoryInterface $productRepository,
-        Context $context,
-        array $data = []
+        Context                                     $context,
+        array                                       $data = []
     ) {
         parent::__construct($context, $data);
     }
@@ -41,14 +42,34 @@ class ProductAssemblyService extends Template
         return $this->productRepository->get($this->config->getSKU());
     }
 
-    /**
-     * @throws NoSuchEntityException
-     */
     public function getAddToCartUrl(): string
     {
-        return $this->listProduct->getAddToCartUrl(
-            $this->getProduct(), $this->getCustomOptions()
-        );
+        try {
+            $product = $this->getProduct();
+            $x = 0;
+            $customOptions = [];
+            foreach ($this->getProduct()->getOptions() as $option) {
+                if ($option->getTitle() != 'Postcode') {
+                    $customOptions[$option->getId()] = $this->getOptionValues()[$x];
+                }
+                ++$x;
+            }
+
+            // Construct query parameters
+            $params = [
+                'product' => $product->getId(),
+                'form_key' => $this->formKey->getFormKey(),
+                'options' => $customOptions, // Include custom options in the URL
+                // You can add additional parameters here if needed
+            ];
+
+            // Generate the URL
+            return $this->getUrl('checkout/cart/add', ['_query' => $params]);
+        } catch (NoSuchEntityException $e) {
+            // Handle exception (e.g., log error, return default URL)
+            return ''; // Return empty string as fallback
+        } catch (LocalizedException $e) {
+        }
     }
 
     public function getConfig(): ConfigInterface

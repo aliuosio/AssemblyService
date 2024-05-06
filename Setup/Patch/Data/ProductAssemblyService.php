@@ -38,7 +38,7 @@ class ProductAssemblyService implements DataPatchInterface
     const OPTIONS = [
         '0' => [
             'sort_order' => '0',
-            'title' => 'Product to Assemble',
+            'title' => 'Name',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
@@ -46,7 +46,7 @@ class ProductAssemblyService implements DataPatchInterface
         ],
         '1' => [
             'sort_order' => '1',
-            'title' => 'Product to Assemble SKU',
+            'title' => 'SKU',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
@@ -54,7 +54,7 @@ class ProductAssemblyService implements DataPatchInterface
         ],
         '2' => [
             'sort_order' => '2',
-            'title' => 'Product to assemble class',
+            'title' => 'Class',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
@@ -62,7 +62,7 @@ class ProductAssemblyService implements DataPatchInterface
         ],
         '3' => [
             'sort_order' => '3',
-            'title' => 'Customer Postcode',
+            'title' => 'Postcode',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',

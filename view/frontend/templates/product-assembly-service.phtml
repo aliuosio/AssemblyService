@@ -27,7 +27,7 @@ try {
             <div class="product-options-wrapper" id="product-options-wrapper">
                 <?php $x = 0;?>
                 <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
-                    <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Customer Postcode'): ?>
+                    <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Postcode'): ?>
                         <input type="text"
                                id="postcode"
                                name="options[<?php echo $option->getId(); ?>]"
