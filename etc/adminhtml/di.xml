@@ -11,22 +11,12 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
     <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
-        <plugin name="advastore_connector_product_advastore_switch_plugin"
+        <plugin name="disable_assembly_product_plugin"
                 sortOrder="100"
                 disabled="false"
                 type="BIWAC\AssemblyService\Plugin\Adminhtml\DisableAssemblyServiceGroupInProductEdit"/>
     </type>
-    <!--
-    <virtualType name="BIWAC_AssemblyService\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
-        <arguments>
-            <argument name="modifiers" xsi:type="array">
-                <item name="product_class" xsi:type="array">
-                    <item name="class" xsi:type="string">BIWAC\AssemblyService\Ui\DataProvider\Product\Form\Modifier\ProductClass</item>
-                    <item name="sortOrder" xsi:type="number">10</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-    -->
+
 </config>

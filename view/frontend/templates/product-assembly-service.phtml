@@ -21,7 +21,7 @@ try {
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
-                <span class="price"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
+                <span class="price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
 
             <div class="product-options-wrapper" id="product-options-wrapper">
@@ -29,12 +29,13 @@ try {
                 <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
                     <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Customer Postcode'): ?>
                         <input type="text"
+                               id="postcode"
                                name="options[<?php echo $option->getId(); ?>]"
                                value="<?php echo $block->getOptionValues()[$x];?>"
                                width="5"
                                minlength="5"
                                maxlength="5"
-                               style="width: 50px"
+                               style="width: 80px"
                         />
                         <span class="postcode-price" style="margin-left: 10px;"></span>
                         <input type="hidden" name="postcode-price" class="postcode-price" value=""/>
