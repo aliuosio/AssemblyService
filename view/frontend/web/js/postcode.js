@@ -11,6 +11,7 @@ define([
 
         function updatePrice() {
             var value = $('#postcode').val();
+            var class_id = $('#option_3').val();
             var price = 0;
 
             if (value.length >= 5) {
@@ -19,7 +20,8 @@ define([
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        postcode: value
+                        postcode: value,
+                        class_id: class_id,
                     },
                     success: function (response) {
                         if (response.success) {

@@ -12,7 +12,6 @@
     <module name="BIWAC_AssemblyService">
         <sequence>
             <module name="BIWAC_ProductClassToPostcode"/>
-            <module name="Magento_Ui"/>
         </sequence>
     </module>
 </config>

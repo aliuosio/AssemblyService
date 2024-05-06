@@ -41,6 +41,7 @@ try {
                         <input type="hidden" name="postcode-price" class="postcode-price" value=""/>
                     <?php elseif ($block->getOptionValues()[$x]): ?>
                         <input type="hidden"
+                               id="option_<?php echo $option->getId(); ?>"
                                name="options[<?php echo $option->getId(); ?>]"
                                value="<?php echo $block->getOptionValues()[$x];?>"
                         />

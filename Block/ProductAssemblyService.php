@@ -46,7 +46,9 @@ class ProductAssemblyService extends Template
      */
     public function getAddToCartUrl(): string
     {
-        return $this->listProduct->getAddToCartUrl($this->getProduct());
+        return $this->listProduct->getAddToCartUrl(
+            $this->getProduct(), $this->getCustomOptions()
+        );
     }
 
     public function getConfig(): ConfigInterface
@@ -78,12 +80,30 @@ class ProductAssemblyService extends Template
             $this->getParentProduct()->getName(),
             $this->getParentProduct()->getSku(),
             $this->getParentProduct()->getData('product_class'),
-            ''
+            0
         ];
     }
 
     public function getPriceFormattted(float $price): float|string
     {
         return $this->priceHeloer->currency($price);
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function getCustomOptions(): array
+    {
+        return array_combine($this->extractingIDsFromProductOptions(), $this->getOptionValues());
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function extractingIDsFromProductOptions(): array
+    {
+        return array_map(function ($option) {
+            return $option->getId();
+        }, $this->getProduct()->getOptions());
     }
 }
