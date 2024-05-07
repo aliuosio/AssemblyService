@@ -121,9 +121,7 @@ class ProductAssemblyService extends Template
         $options = $this->getProduct()->getOptions();
 
         for ($i = 0; $i < count($options); $i++) {
-            if ($this->getTitle($i) != 'Postcode') {
-                $customOptions[$options[$i]->getId()] = $this->getOptionValues()[$i];
-            }
+            $customOptions[$options[$i]->getId()] = $this->getOptionValues()[$i];
         }
 
         return $customOptions;
