@@ -42,7 +42,7 @@ class ProductAssemblyService implements DataPatchInterface
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
-            'is_require' => '1',
+            'is_require' => '0',
         ],
         '1' => [
             'sort_order' => '1',
@@ -50,7 +50,7 @@ class ProductAssemblyService implements DataPatchInterface
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',
-            'is_require' => '1',
+            'is_require' => '0',
         ],
         '2' => [
             'sort_order' => '2',
