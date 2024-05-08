@@ -23,6 +23,9 @@
 * ~~display pulldown with Delivery Categories and postcode~~
 * ~~change select in product assembly service to searchbale field~~
 * make **attribute products Product Class** visible/dependent on selection of assembly service
-* display block assembly service in modal field
+* ~~display block assembly service in modal field~~
+* only show modal if the assembly service for the current product has not been added to cart
+* ~~show image for assembly service~~
+* exclude the custon option postcode from verification so it can be added to cart
 * create unit test
 * create integration tests
