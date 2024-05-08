@@ -1,7 +1,7 @@
 define(['jquery'], function ($) {
     'use strict';
 
-    var postcode = ''; // Declare postcode as a global variable
+    var postcode = $('#postcode'); // Declare postcode as a global variable
     var form = $('#assembly-service'); // Cache form selection
     var action = form.attr('action'); // Cache form action
 
@@ -43,10 +43,9 @@ define(['jquery'], function ($) {
     }
 
     function updatePrice() {
-        var class_id = $('#option_3').val();
+        var class_id = $('#class-id').val();
         var price = 0;
-
-        if (postcode.length >= 5) {
+            if (postcode.length >= 5) {
             $.ajax({
                 url: '/postcodes/price/index',
                 type: 'POST',
