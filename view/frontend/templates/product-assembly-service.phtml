@@ -11,12 +11,13 @@ try {
 }
 ?>
 <?php if (isset($assemblyProduct) && $block->getConfig()->isEnabled() && $block->hasParentAssemblyService()): ?>
-    <div id="product-recommendation-detailpage-related-placeholder" class="closed">
+    <div id="product-assembly-service" class="closed hidden">
         <form id="assembly-service" data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
             <h3><?php echo $assemblyProduct->getName(); ?></h3>
+            <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>">
             <div class="price-box price-final_price"
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
@@ -52,7 +53,7 @@ try {
 
             <?php echo $block->getBlockHtml('formkey') ?>
             <div class="btn" style="margin-top: 20px;">
-                <button type="submit" title="Add to Cart" class="action tocart primary">
+                <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
                     <span><?php echo __('Add to Cart'); ?></span>
                 </button>
             </div>
@@ -62,8 +63,8 @@ try {
 <script type="text/x-magento-init">
     {
         "*": {
-            "BIWAC_AssemblyService/js/postcode" : {
-            }
+            "BIWAC_AssemblyService/js/postcode" : {},
+            "BIWAC_AssemblyService/js/added-to-cart" : {}
         }
     }
 </script>
