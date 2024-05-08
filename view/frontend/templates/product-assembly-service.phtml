@@ -7,6 +7,8 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 try {
     $assemblyProduct = $block->getProduct();
+    $classId = $block->getParentProduct()->getData('product_class');
+
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
@@ -45,10 +47,14 @@ try {
                 <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?> /">
                 <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>" />
                 <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>" />
-                <input type="hidden" id="class-id" value="<?php echo $block->getParentProduct()->getData('product_class'); ?>" />
+
+                <?php if ($classId > 0): ?>
+                <input type="hidden" id="class-id" value="<?php echo $classId; ?>" />
                 <label for="postcode">Postcode: </label>
                 <input type="number" id="postcode" width="5" minlength="5" maxlength="5" style="width: 80px"/>
                 <span class="postcode-price" style="margin-left: 10px;"></span>
+                <?php endif; ?>
+
             </div>
 
             <?php echo $block->getBlockHtml('formkey') ?>
