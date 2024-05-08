@@ -18,9 +18,7 @@ try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
-            <h3><?php echo $assemblyProduct->getName(); ?></h3>
-
-
+            <!-- <h3><?php echo $assemblyProduct->getName(); ?></h3> -->
             <?php
             # Image
             $imageUrl = '';
@@ -29,11 +27,9 @@ try {
                 $imageUrl = $imageHelper->setImageFile($assemblyProduct->getImage())->getUrl();
             }
             ?>
-
             <?php if ($imageUrl): ?>
                 <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>" />
             <?php endif;?>
-
             <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>">
             <div class="price-box price-final_price"
                  data-role="priceBox"
@@ -41,7 +37,6 @@ try {
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
                 <span class="price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
-
             <div class="product-options-wrapper" id="product-options-wrapper">
                 <?php $x = 0;?>
                 <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
@@ -67,7 +62,6 @@ try {
                 <?php ++$x; ?>
                 <?php endforeach; ?>
             </div>
-
             <?php echo $block->getBlockHtml('formkey') ?>
             <div class="btn" style="margin-top: 20px;">
                 <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
