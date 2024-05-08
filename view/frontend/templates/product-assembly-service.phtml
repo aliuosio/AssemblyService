@@ -18,9 +18,9 @@ try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
-            <!-- <h3><?php echo $assemblyProduct->getName(); ?></h3> -->
+
             <?php
-            # Image
+            # Image START
             $imageUrl = '';
             if ($assemblyProduct->getImage()) {
                 $imageHelper = $block->getLayout()->createBlock('Magento\Catalog\Block\Product\Image');
@@ -30,6 +30,11 @@ try {
             <?php if ($imageUrl): ?>
                 <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>" />
             <?php endif;?>
+            <?php
+            # Image END
+            ?>
+
+            <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?>">
             <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>">
             <div class="price-box price-final_price"
                  data-role="priceBox"
