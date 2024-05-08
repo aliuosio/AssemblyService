@@ -40,7 +40,7 @@ try {
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
-                <span class="price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
+                <span class="price-container price-final_price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
 
             <div class="product-options-wrapper" id="product-options-wrapper">

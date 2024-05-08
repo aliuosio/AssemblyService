@@ -46,7 +46,9 @@ define(['jquery'], function ($) {
         var class_id = $('#class-id').val();
         var product_price = $('#current-product-price').val();
         var price = 0;
-            if (postcode.length >= 5) {
+        var newPrice = 0;
+
+        if (postcode.length >= 5) {
             $.ajax({
                 url: '/postcodes/price/index',
                 type: 'POST',
@@ -60,7 +62,7 @@ define(['jquery'], function ($) {
                         price = parseFloat(response.price);
                         addToCustomOptions(price);
                     }
-                    var newPrice = parseFloat(price) + parseFloat(product_price);
+                    newPrice = parseFloat(price) + parseFloat(product_price);
                     $('.postcode-price').text('+ ' + price.toFixed(2));
                     $('#price-boxer').text(newPrice.toFixed(2));
                 },
@@ -69,7 +71,9 @@ define(['jquery'], function ($) {
                 }
             });
         } else {
-                $('.postcode-price').text(price.toFixed(2));
+            $('.postcode-price').text('+ ' + price.toFixed(2));
+            if (product_price > 0)
+                $('#price-boxer').text(parseFloat(product_price).toFixed(2));
         }
     }
 
