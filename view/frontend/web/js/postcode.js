@@ -44,6 +44,7 @@ define(['jquery'], function ($) {
 
     function updatePrice() {
         var class_id = $('#class-id').val();
+        var product_price = $('#current-product-price').val();
         var price = 0;
             if (postcode.length >= 5) {
             $.ajax({
@@ -59,14 +60,16 @@ define(['jquery'], function ($) {
                         price = parseFloat(response.price);
                         addToCustomOptions(price);
                     }
-                    $('.postcode-price').text(price.toFixed(2));
+                    var newPrice = parseFloat(price) + parseFloat(product_price);
+                    $('.postcode-price').text('+ ' + price.toFixed(2));
+                    $('#price-boxer').text(newPrice.toFixed(2));
                 },
                 error: function (xhr, status, error) {
                     console.error('Error:', error);
                 }
             });
         } else {
-            $('.postcode-price').text(price.toFixed(2));
+                $('.postcode-price').text(price.toFixed(2));
         }
     }
 
