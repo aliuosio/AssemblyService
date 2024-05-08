@@ -2,6 +2,7 @@
 /** @var ProductAssemblyService $block */
 
 use BIWAC\AssemblyService\Block\ProductAssemblyService;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 try {
@@ -9,6 +10,7 @@ try {
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
+
 ?>
 <?php if (isset($assemblyProduct) && $block->getConfig()->isEnabled() && $block->hasParentAssemblyService()): ?>
     <div id="product-assembly-service" class="closed hidden">
@@ -17,6 +19,21 @@ try {
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
             <h3><?php echo $assemblyProduct->getName(); ?></h3>
+
+
+            <?php
+            # Image
+            $imageUrl = '';
+            if ($assemblyProduct->getImage()) {
+                $imageHelper = $block->getLayout()->createBlock('Magento\Catalog\Block\Product\Image');
+                $imageUrl = $imageHelper->setImageFile($assemblyProduct->getImage())->getUrl();
+            }
+            ?>
+
+            <?php if ($imageUrl): ?>
+                <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>" />
+            <?php endif;?>
+
             <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>">
             <div class="price-box price-final_price"
                  data-role="priceBox"
