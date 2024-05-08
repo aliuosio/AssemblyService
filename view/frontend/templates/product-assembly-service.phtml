@@ -34,39 +34,21 @@ try {
             # Image END
             ?>
 
-            <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?>">
-            <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>">
             <div class="price-box price-final_price"
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
                 <span class="price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
+
             <div class="product-options-wrapper" id="product-options-wrapper">
-                <?php $x = 0;?>
-                <?php foreach ($assemblyProduct->getOptions() as $option) : ?>
-                    <?php if ($block->getParentProduct()->getData('product_class') && $option->getTitle() == 'Postcode'): ?>
-                            <label>Postcode: </label>
-                            <input type="text"
-                               id="postcode"
-                               name="options[<?php echo $option->getId(); ?>]"
-                               value="<?php echo $block->getOptionValues()[$x];?>"
-                               width="5"
-                               minlength="5"
-                               maxlength="5"
-                               style="width: 80px"
-                        />
-                        <span class="postcode-price" style="margin-left: 10px;"></span>
-                    <?php elseif ($block->getOptionValues()[$x]): ?>
-                        <input type="hidden"
-                               id="option_<?php echo $option->getId(); ?>"
-                               name="options[<?php echo $option->getId(); ?>]"
-                               value="<?php echo $block->getOptionValues()[$x];?>"
-                        />
-                    <?php endif; ?>
-                <?php ++$x; ?>
-                <?php endforeach; ?>
+                <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?> /">
+                <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>" />
+                <label for="postcode">Postcode: </label>
+                <input type="number" id="postcode" name="options[4]" width="5" minlength="5" maxlength="5" style="width: 80px"/>
+                <span class="postcode-price" style="margin-left: 10px;"></span>
             </div>
+
             <?php echo $block->getBlockHtml('formkey') ?>
             <div class="btn" style="margin-top: 20px;">
                 <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
