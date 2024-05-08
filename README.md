@@ -7,8 +7,6 @@
         && bin/magento setup:upgrade \
         && bin/magento cache:clean;
 
-
-
 ### TODOS
 * ~~add config to turn module turn module on/off~~
 * ~~create **attribute products assembly service** (Type: radio, Values: true/false) (not visible in frontend only admin)~~
@@ -26,6 +24,9 @@
 * ~~display block assembly service in modal field~~
 * only show modal if the assembly service for the current product has not been added to cart
 * ~~show image for assembly service~~
-* exclude the custon option postcode from verification so it can be added to cart
+* !!! exclude the custon option postcode from verification so it can be added to cart !!!
+* add new row and edit in admin grid
+* add assembly service on ad to cart
+* check if all five digits have been entered to postcode
 * create unit test
 * create integration tests
