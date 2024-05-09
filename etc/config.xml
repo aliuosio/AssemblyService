@@ -23,6 +23,10 @@
                     <attribute_name>assembly_service</attribute_name>
                 </product>
                 <assembly>
+                    <options>
+                        <code>psotcode</code>
+                        <price>postcode-price</price>
+                    </options>
                     <price>299.00</price>
                 </assembly>
             </settings>

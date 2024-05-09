@@ -17,20 +17,13 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 class Config implements ConfigInterface
 {
 
-    private const ENABLED = 'BIWAC/settings/enabled';
-    private const GROUP_KEY = 'BIWAC/settings/product_edit/group_key';
-    private const SKU = 'BIWAC/settings/product/sku';
-    private const ASSEMBLY_PRICE = 'BIWAC/settings/assembly/price';
-    private const ATTRIBUTE_ASSEMBLY = 'BIWAC/settings/product/attribute_name';
-    private const PRODUCT_CLASS = 'BIWAC/settings/product/class';
-
     public function __construct(
         readonly private ScopeConfigInterface $scopeConfig
     ) {}
 
-    public function isEnabled(): string
+    public function isEnabled(): bool
     {
-        return $this->scopeConfig->getValue(self::ENABLED);
+        return (bool)$this->scopeConfig->getValue(self::ENABLED);
     }
 
     public function getGroupKey(): string
@@ -48,7 +41,7 @@ class Config implements ConfigInterface
         return $this->scopeConfig->getValue(self::ASSEMBLY_PRICE);
     }
 
-    public function getProductClass()
+    public function getProductClass(): string
     {
         return $this->scopeConfig->getValue(self::PRODUCT_CLASS);
     }
@@ -56,5 +49,15 @@ class Config implements ConfigInterface
     public function getAttributeAssemblyName(): string
     {
         return $this->scopeConfig->getValue(self::ATTRIBUTE_ASSEMBLY);
+    }
+
+    public function getAssemblyOptionCode(): string
+    {
+        return $this->scopeConfig->getValue(self::ASSEMBLY_OPTION_CODE);
+    }
+
+    public function getAssemblyOptionPrice(): string
+    {
+        return $this->scopeConfig->getValue(self::ASSEMBLY_OPTION_PRICE);
     }
 }
