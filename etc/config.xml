@@ -24,7 +24,7 @@
                 </product>
                 <assembly>
                     <options>
-                        <code>psotcode</code>
+                        <code>postcode</code>
                         <price>postcode-price</price>
                     </options>
                     <price>299.00</price>

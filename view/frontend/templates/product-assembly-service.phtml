@@ -2,19 +2,18 @@
 /** @var ProductAssemblyService $block */
 
 use BIWAC\AssemblyService\Block\ProductAssemblyService;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
+$config = $block->getConfig();
 try {
     $assemblyProduct = $block->getProduct();
-    $classId = $block->getParentProduct()->getData($block->getConfig()->getProductClass());
+    $classId = $block->getParentProduct()->getData($config->getProductClass());
 
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
-
 ?>
-<?php if (isset($assemblyProduct) && $block->getConfig()->isEnabled() && $block->hasParentAssemblyService()): ?>
+<?php if (isset($assemblyProduct) && $config->isEnabled() && $block->hasParentAssemblyService()): ?>
     <div id="product-assembly-service" class="closed hidden">
         <form id="assembly-service" data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
@@ -50,9 +49,14 @@ try {
                 <input type="hidden" id="class-id" value="<?php echo $classId; ?>" />
 
                 <?php if ($classId > 0): ?>
-                    <label for="postcode">Postcode: </label>
-                    <input type="number" name="<?php echo $block->getConfig()->getAssemblyOptionCode(); ?>" id="postcode" width="5" minlength="5" maxlength="5" style="width: 80px"/>
-                    <input type="hidden" name="<?php echo $block->getConfig()->getAssemblyOptionPrice(); ?>" id="postcode-price" />
+                    <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
+                    <input type="number"
+                           name="<?php echo $config->getAssemblyOptionCode(); ?>"
+                           id="<?php echo $config->getAssemblyOptionCode(); ?>"
+                           width="5" minlength="5" maxlength="5" style="width: 80px"/>
+                    <input type="hidden"
+                           name="<?php echo $config->getAssemblyOptionPrice(); ?>"
+                           id="<?php echo $config->getAssemblyOptionPrice(); ?>" />
                     <span class="postcode-price" style="margin-left: 10px;"></span>
                 <?php endif; ?>
 

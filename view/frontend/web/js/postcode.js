@@ -1,8 +1,8 @@
 define(['jquery'], function ($) {
     'use strict';
-    var postcode = $('#postcode'); // Declare postcode as a global variable
-
     function updatePrice() {
+
+        var postcode = $('#postcode').val();
         var class_id = $('#class-id').val();
         var product_price = $('#current-product-price').val();
         var price = 0;
@@ -39,7 +39,6 @@ define(['jquery'], function ($) {
 
     return function () {
         $('#postcode').on('input', function () {
-            postcode = $(this).val();
             updatePrice();
         });
 
