@@ -60,4 +60,9 @@ class Config implements ConfigInterface
     {
         return $this->scopeConfig->getValue(self::ASSEMBLY_OPTION_PRICE);
     }
+
+    public function getAssemblyOptions(): array
+    {
+        return $this->scopeConfig->getValue(self::ASSEMBLY_OPTIONS);
+    }
 }

@@ -21,6 +21,7 @@ interface ConfigInterface
     public const ASSEMBLY_PRICE = 'BIWAC/settings/assembly/price';
     public const ASSEMBLY_OPTION_CODE = 'BIWAC/settings/assembly/options/code';
     public const ASSEMBLY_OPTION_PRICE= 'BIWAC/settings/assembly/options/price';
+    public const ASSEMBLY_OPTIONS= 'BIWAC/settings/assembly/options';
 
     public function isEnabled(): bool;
 
@@ -37,5 +38,7 @@ interface ConfigInterface
     public function getAssemblyOptionCode(): string;
 
     public function getAssemblyOptionPrice(): string;
+
+    public function getAssemblyOptions(): array;
 
 }
