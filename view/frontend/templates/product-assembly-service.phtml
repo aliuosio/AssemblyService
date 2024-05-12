@@ -29,8 +29,8 @@ try {
             }
             ?>
             <?php if ($imageUrl): ?>
-                <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>" />
-            <?php endif;?>
+                <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>"/>
+            <?php endif; ?>
             <?php
             # Image END
             ?>
@@ -39,14 +39,16 @@ try {
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
-                <span class="price-container price-final_price" id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
+                <span class="price-container price-final_price"
+                      id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
             </div>
 
             <div class="product-options-wrapper" id="product-options-wrapper">
                 <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?> /">
-                <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>" />
-                <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>" />
-                <input type="hidden" id="class-id" value="<?php echo $classId; ?>" />
+                <input type="hidden" id="current-product-id"
+                       value="<?php echo $block->getParentProduct()->getId(); ?>"/>
+                <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>"/>
+                <input type="hidden" id="class-id" value="<?php echo $classId; ?>"/>
 
                 <?php if ($classId > 0): ?>
                     <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
@@ -56,17 +58,21 @@ try {
                            width="5" minlength="5" maxlength="5" style="width: 80px"/>
                     <input type="hidden"
                            name="<?php echo $config->getAssemblyOptionPrice(); ?>"
-                           id="<?php echo $config->getAssemblyOptionPrice(); ?>" />
+                           id="<?php echo $config->getAssemblyOptionPrice(); ?>"/>
                     <span class="postcode-price" style="margin-left: 10px;"></span>
                 <?php endif; ?>
 
             </div>
 
             <?php echo $block->getBlockHtml('formkey') ?>
-            <div class="btn" style="margin-top: 20px;">
-                <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
-                    <span><?php echo __('Add to Cart'); ?></span>
-                </button>
+            <div class="box-tocart">
+                <div class="actions">
+                    <div class="btn" style="margin-top: 20px;">
+                        <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
+                            <span><?php echo __('Add to Cart'); ?></span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -74,13 +80,13 @@ try {
 <script type="text/x-magento-init">
     {
         "*": {
-            "BIWAC_AssemblyService/js/postcode" : {},
-            "BIWAC_AssemblyService/js/assembly-modal" : {}
+            "BIWAC_AssemblyService/js/postcode": {},
+            "BIWAC_AssemblyService/js/assembly-modal": {}
         }
     }
 </script>
 <script type="javascript">
-    require(['jquery', 'postcode'], function($, postcode) {
+    require(['jquery', 'postcode'], function ($, postcode) {
         postcode();
     });
 </script>
