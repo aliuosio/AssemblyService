@@ -21,21 +21,27 @@ try {
         } ?>" method="post">
 
             <?php
-            # Image START
-            $imageUrl = '';
-            if ($assemblyProduct->getImage()) {
-                $imageHelper = $block->getLayout()->createBlock('Magento\Catalog\Block\Product\Image');
-                $imageUrl = $imageHelper->setImageFile($assemblyProduct->getImage())->getUrl();
-            }
-            ?>
-            <?php if ($imageUrl): ?>
-                <img src="<?php echo $imageUrl; ?>" alt="<?php echo $assemblyProduct->getName(); ?>"/>
-            <?php endif; ?>
-            <?php
-            # Image END
-            ?>
+            if ($assemblyProduct->getImage()):
+                $imageHelper = $this->helper('Magento\Catalog\Helper\Image')
+                    ->init($assemblyProduct, 'thumbnail')
+                    ->setImageFile($assemblyProduct->getImage());
 
-            <div class="price-box price-final_price"
+                // Set desired dimensions
+                $width = 200; // Desired width
+                $height = 200; // Desired height
+
+                $resizedImage = $imageHelper->resize($width, $height);
+                ?>
+                <div class="product-image" style="width: 50%; float: left">
+                    <img src="<?php echo $resizedImage->getUrl(); ?>"
+                         width="<?php echo $width; ?>"
+                         height="<?php echo $height; ?>"
+                         alt="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>"
+                         title="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>" />
+                </div>
+            <?php endif; ?>
+
+            <div class="price-box price-final_price" style="width: 50%; float: right"
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
