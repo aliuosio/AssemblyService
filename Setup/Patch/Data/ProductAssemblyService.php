@@ -59,6 +59,13 @@ class ProductAssemblyService implements DataPatchInterface
             'price' => '0',
             'type' => 'field',
             'is_require' => '0',
+        ],
+        '3' => [
+            'sort_order' => '3',
+            'title' => 'postcode',
+            'price_type' => 'fixed',
+            'type' => 'field',
+            'is_require' => '0',
         ]
     ];
 

@@ -8,7 +8,6 @@ $config = $block->getConfig();
 try {
     $assemblyProduct = $block->getProduct();
     $classId = $block->getParentProduct()->getData($config->getProductClass());
-
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
@@ -58,8 +57,9 @@ try {
 
                 <?php if ($classId > 0): ?>
                     <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
-                    <input type="number"
-                           name="<?php echo $config->getAssemblyOptionCode(); ?>"
+                    <input type="text"
+                           name="options[4]"
+                           value="<?php echo $assemblyProduct->getOptions()[3]->getTitle(); ?>"
                            id="<?php echo $config->getAssemblyOptionCode(); ?>"
                            width="5" minlength="5" maxlength="5" style="width: 80px"/>
                     <input type="hidden"
