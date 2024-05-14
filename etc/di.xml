@@ -13,11 +13,4 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="BIWAC\AssemblyService\Api\ConfigInterface"
                 type="BIWAC\AssemblyService\Model\Config"/>
-
-    <type name="\Magento\Quote\Model\Quote\Item">
-        <plugin name="add_custom_option_price"
-                sortOrder="100"
-                disabled="false"
-                type="BIWAC\AssemblyService\Plugin\AddCustomOptionPriceToPostCode"/>
-    </type>
 </config>
