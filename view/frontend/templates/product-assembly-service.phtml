@@ -62,6 +62,7 @@ try {
                            value=""
                            id="<?php echo $config->getAssemblyOptionCode(); ?>"
                            width="5" minlength="5" maxlength="5" style="width: 80px"/>
+                    <div id="assembly-error" style="color: red; display: none;"></div>
                     <span class="postcode-price" style="margin-left: 10px;"></span>
                 <?php endif; ?>
 
@@ -83,8 +84,9 @@ try {
 <script type="text/x-magento-init">
     {
         "*": {
-            "BIWAC_AssemblyService/js/postcode": {},
-            "BIWAC_AssemblyService/js/assembly-modal": {}
+            "BIWAC_AssemblyService/js/classToPostcodePrice": {},
+            "BIWAC_AssemblyService/js/assembly-modal": {},
+            "BIWAC_AssemblyService/js/postcode-validation": {}
         }
     }
 </script>
