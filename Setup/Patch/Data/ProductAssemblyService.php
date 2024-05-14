@@ -54,7 +54,7 @@ class ProductAssemblyService implements DataPatchInterface
         ],
         '2' => [
             'sort_order' => '2',
-            'title' => 'Class',
+            'title' => 'class-id',
             'price_type' => 'fixed',
             'price' => '0',
             'type' => 'field',

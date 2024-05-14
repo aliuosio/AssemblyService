@@ -53,7 +53,7 @@ try {
                 <input type="hidden" id="current-product-id"
                        value="<?php echo $block->getParentProduct()->getId(); ?>"/>
                 <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>"/>
-                <input type="hidden" id="class-id" value="<?php echo $classId; ?>"/>
+                <input type="hidden" name="class-id" id="class-id" value="<?php echo $classId; ?>"/>
 
                 <?php if ($classId > 0): ?>
                     <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
