@@ -26,7 +26,10 @@ define(['jquery'], function ($) {
                         var code = (price > 0) ? postcode : 0;
                         updateFormAction(code);
                     }
-                    newPrice = parseFloat(price) + parseFloat(product_price);
+                    if (price)
+                        newPrice = parseFloat(price) + parseFloat(product_price);
+                    else
+                        newPrice = parseFloat(product_price);
                     $('.postcode-price').text('+ ' + price.toFixed(2));
                     $('#price-boxer').text(newPrice.toFixed(2));
                 },
