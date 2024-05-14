@@ -1,9 +1,0 @@
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="checkout_cart_product_add_after">
-        <observer disabled="false"
-                  name="assemblyservice_add_custom_options_observer"
-                  instance="BIWAC\AssemblyService\Observer\Frontend\AddCustomOptions"
-        />
-    </event>
-</config>
