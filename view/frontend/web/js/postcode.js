@@ -28,7 +28,6 @@ define(['jquery'], function ($) {
                     }
                     newPrice = parseFloat(price) + parseFloat(product_price);
                     $('.postcode-price').text('+ ' + price.toFixed(2));
-                    $('#postcode-price').val(price.toFixed(2));
                     $('#price-boxer').text(newPrice.toFixed(2));
                 },
                 error: function (xhr, status, error) {
