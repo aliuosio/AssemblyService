@@ -9,7 +9,7 @@ require(
             type: 'popup',
             responsive: true,
             innerScroll: true,
-            title: 'Assembly Service',
+            title: $.mage.__('Assembly Service'),
             buttons: [{
                 text: $.mage.__('Close'),
                 class: '',
