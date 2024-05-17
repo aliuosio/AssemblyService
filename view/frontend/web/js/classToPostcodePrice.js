@@ -1,9 +1,6 @@
 define(['jquery'], function ($) {
     'use strict';
 
-    var form = $('#assembly-service'); // Cache form selection
-    var action = form.attr('action'); // Cache form action
-
     function updatePrice() {
         var class_id = $('#class-id').val();
         var product_price = $('#current-product-price').val();
@@ -26,11 +23,20 @@ define(['jquery'], function ($) {
                         var code = (price > 0) ? postcode : 0;
                         updateFormAction(code);
                     }
-                    if (price)
+                    // @Todo: refactor START
+                    if (price) {
                         newPrice = parseFloat(price) + parseFloat(product_price);
-                    else
+                    } else {
                         newPrice = parseFloat(product_price);
-                    $('.postcode-price').text('+ ' + price.toFixed(2));
+                    }
+
+                    if (isNaN(price)) {
+                        $('.postcode-price').text('Postcode not available');
+                    } else {
+                        $('.postcode-price').text('+ ' + price.toFixed(2));
+                    }
+                    // @Todo: refactor END
+
                     $('#price-boxer').text(newPrice.toFixed(2));
                 },
                 error: function (xhr, status, error) {
