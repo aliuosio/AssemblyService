@@ -19,6 +19,8 @@ require(
         };
 
         let $myModal = $('#product-assembly-service');
-        let popup = modal(options, $myModal);
-        $myModal.modal('openModal');
+        if ($myModal.length) {
+            let popup = modal(options, $myModal);
+            $myModal.modal('openModal');
+        }
     });
