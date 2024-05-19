@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author     Osiozekhai Aliu
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin name="assembly_service_options_empty_remove"
+                sortOrder="10"
+                disabled="false"
+                type="BIWAC\AssemblyService\Plugin\OptionsEmptyRemove"/>
+    </type>
+</config>
