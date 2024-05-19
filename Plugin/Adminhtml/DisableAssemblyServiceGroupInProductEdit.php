@@ -25,9 +25,6 @@ class DisableAssemblyServiceGroupInProductEdit
     ) {
     }
 
-    /**
-     * @throws NoSuchEntityException
-     */
     public function afterGetMeta($subject, $meta)
     {
         if (!$this->config->isEnabled() || $this->isAssemblyProduct()) {
@@ -37,22 +34,20 @@ class DisableAssemblyServiceGroupInProductEdit
         return $meta;
     }
 
-    /**
-     * @throws NoSuchEntityException
-     */
     private function isAssemblyProduct(): bool
     {
         return $this->getProductSku() == $this->config->getSKU();
     }
 
-    /**
-     * @throws NoSuchEntityException
-     */
-    private function getProductSku(): string
+    private function getProductSku(): ?string
     {
-        return $this->productRepository
-            ->getById($this->request->getParam('id'))
-            ->getSku();
+        try {
+            return $this->productRepository
+                ->getById($this->request->getParam('id'))
+                ->getSku();
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
     }
 
 }
