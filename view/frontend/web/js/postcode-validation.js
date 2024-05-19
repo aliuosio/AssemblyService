@@ -17,8 +17,10 @@ define(['jquery'], function ($) {
                     var postcodeValue = postcodeInput.val();
 
                     if (!postcodeValue) {
+                        $('.postcode-price').hide();
                         message = $.mage.__('Please enter a valid postcode');
                     } else if (postcodeValue.length < 5) {
+                        $('.postcode-price').hide();
                         message = $.mage.__('Postcode must be at least 5 characters long');
                     }
 

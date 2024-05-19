@@ -33,17 +33,18 @@ define(['jquery'], function ($) {
                     }
 
                     if (isNaN(price)) {
-                        assemblyError.text($.mage.__('Postcode not available')).show();
                         $('.postcode-price').hide();
+                        assemblyError.text($.mage.__('Postcode not available')).show();
                         $('button#assembly-cart-add').attr('disabled', true);
                     } else {
                         assemblyError.hide();
                         $('.postcode-price').text('+ ' + price.toFixed(2)).show();
                         $('button#assembly-cart-add').attr('disabled', false);
                     }
-                    // @Todo: refactor END
 
                     $('#price-boxer').text(newPrice.toFixed(2));
+
+                    // @Todo: refactor END
                 },
                 error: function (xhr, status, error) {
                     console.error('Error:', error);
@@ -74,6 +75,7 @@ define(['jquery'], function ($) {
     }
 
     return function () {
+        $('.postcode-price').hide();
         $('#postcode').on('input', function () {
             updatePrice();
         });
