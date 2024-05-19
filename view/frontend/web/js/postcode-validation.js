@@ -1,3 +1,4 @@
+var postcode_js = true;
 define(['jquery'], function ($) {
     'use strict';
 
@@ -5,8 +6,8 @@ define(['jquery'], function ($) {
         $(document).ready(function () {
             var assemblyServiceForm = $('#assembly-service');
             var addToCartButton = assemblyServiceForm.find('button.tocart');
-            var postcodeInput = assemblyServiceForm.find('#postcode');
-            var assemblyError = assemblyServiceForm.find('#assembly-error');
+            var postcodeInput = $('#postcode');
+            var assemblyError = $('#assembly-error');
 
             if (postcodeInput.length) {
                 addToCartButton.on('click', function (event) {
@@ -16,17 +17,18 @@ define(['jquery'], function ($) {
                     var postcodeValue = postcodeInput.val();
 
                     if (!postcodeValue) {
-                        message = 'Please enter a valid postcode.';
+                        message = $.mage.__('Please enter a valid postcode');
                     } else if (postcodeValue.length < 5) {
-                        message = 'Postcode must be at least 5 characters long.';
+                        message = $.mage.__('Postcode must be at least 5 characters long');
                     }
 
                     if (message) {
                         event.preventDefault();
                         assemblyError.text(message).show();
                         postcodeInput.focus();
+                    } else {
+                        $('#product-assembly-service').modal('closeModal');
                     }
-
                 });
             }
         });

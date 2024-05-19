@@ -11,9 +11,10 @@ try {
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
+
 ?>
 <?php if (isset($assemblyProduct) && $config->isEnabled() && $block->hasParentAssemblyService()): ?>
-    <div id="product-assembly-service" style="display: none;">
+    <div id="product-assembly-service">
         <form id="assembly-service" data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
@@ -60,8 +61,16 @@ try {
                            value=""
                            id="<?php echo $config->getAssemblyOptionCode(); ?>"
                            width="5" minlength="5" maxlength="5" style="width: 80px"/>
-                    <div id="assembly-error" style="color: red; display: none;"></div>
-                    <span class="postcode-price" style="margin-left: 10px;"></span>
+                    <div id="assembly-error"></div>
+                    <span class="postcode-price"></span>
+                    <script type="text/x-magento-init">
+                        {
+                            "*": {
+                                "BIWAC_AssemblyService/js/classToPostcodePrice": {},
+                                "BIWAC_AssemblyService/js/postcode-validation": {}
+                            }
+                        }
+                    </script>
                 <?php endif; ?>
 
             </div>
@@ -70,7 +79,10 @@ try {
             <div class="box-tocart">
                 <div class="actions">
                     <div class="btn" style="margin-top: 20px;">
-                        <button id="assembly-cart-add" type="submit" title="Add to Cart" class="action tocart primary">
+                        <button id="assembly-cart-add"
+                                type="submit"
+                                title="Add to Cart"
+                                class="action tocart primary">
                             <span><?php echo __('Add to Cart'); ?></span>
                         </button>
                     </div>
@@ -81,9 +93,7 @@ try {
     <script type="text/x-magento-init">
         {
             "*": {
-                "BIWAC_AssemblyService/js/classToPostcodePrice": {},
-                "BIWAC_AssemblyService/js/assembly-modal": {},
-                "BIWAC_AssemblyService/js/postcode-validation": {}
+                "BIWAC_AssemblyService/js/assembly-modal": {}
             }
         }
     </script>

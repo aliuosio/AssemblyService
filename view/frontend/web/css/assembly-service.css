@@ -11,3 +11,16 @@
     width: 50%;
     float: right
 }
+
+#assembly-error {
+    color: red;
+    display: none;
+}
+
+.postcode-price {
+    margin-left: 10px;
+}
+
+#product-assembly-service {
+    display: none;
+}

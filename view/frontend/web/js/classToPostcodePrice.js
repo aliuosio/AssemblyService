@@ -7,6 +7,7 @@ define(['jquery'], function ($) {
         var price = 0;
         var newPrice = 0;
         var postcode = $('#postcode').val();
+        var assemblyError = $('#assembly-error');
 
         if (postcode.length >= 5) {
             $.ajax({
@@ -23,6 +24,7 @@ define(['jquery'], function ($) {
                         var code = (price > 0) ? postcode : 0;
                         updateFormAction(code);
                     }
+
                     // @Todo: refactor START
                     if (price) {
                         newPrice = parseFloat(price) + parseFloat(product_price);
@@ -31,9 +33,13 @@ define(['jquery'], function ($) {
                     }
 
                     if (isNaN(price)) {
-                        $('.postcode-price').text('Postcode not available');
+                        assemblyError.text($.mage.__('Postcode not available')).show();
+                        $('.postcode-price').hide();
+                        $('button#assembly-cart-add').attr('disabled', true);
                     } else {
-                        $('.postcode-price').text('+ ' + price.toFixed(2));
+                        assemblyError.hide();
+                        $('.postcode-price').text('+ ' + price.toFixed(2)).show();
+                        $('button#assembly-cart-add').attr('disabled', false);
                     }
                     // @Todo: refactor END
 
@@ -51,27 +57,20 @@ define(['jquery'], function ($) {
     }
 
     function updateFormAction(newValue) {
-        // Extract the original URL
-        var originalUrl = $("form#assembly-service").attr("action");
+        var assembly_form = $("form#assembly-service");
+        var originalUrl = assembly_form.attr("action");
 
-        // Parse the URL
         var urlParts = originalUrl.split('?');
         var baseUrl = urlParts[0];
         var queryParams = urlParts[1].split('&');
 
-        // Find the pre-last key-value pair
         var preLastParam = queryParams[queryParams.length - 2];
         var keyValue = preLastParam.split('=');
         var key = keyValue[0];
 
-        // Modify the value with the new value
         queryParams[queryParams.length - 2] = key + '=' + newValue;
-
-        // Reconstruct the URL
         var modifiedUrl = baseUrl + '?' + queryParams.join('&');
-
-        // Update the form action attribute with the modified URL
-        $("form#assembly-service").attr("action", modifiedUrl);
+        assembly_form.attr("action", modifiedUrl);
     }
 
     return function () {

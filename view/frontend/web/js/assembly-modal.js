@@ -23,4 +23,11 @@ require(
             let popup = modal(options, $myModal);
             $myModal.modal('openModal');
         }
+
+        $('button#assembly-cart-add').on('click', function (event) {
+            if (typeof postcode_js === 'undefined') {
+                $myModal.modal('closeModal');
+            }
+        });
+
     });

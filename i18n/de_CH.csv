@@ -3,3 +3,5 @@
 "postcode","Postleitzahl"
 "class-id","Produkt Klasse"
 "Postcode not available","Postleitzahl nicht verfügbar"
+"Please enter a valid postcode","Bitte geben Sie eine gültige Postleitzahl ein"
+"Postcode must be at least 5 characters long","Die Postleitzahl muss mindestens 5 Zeichen lang sein"
