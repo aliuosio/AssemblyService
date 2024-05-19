@@ -36,15 +36,13 @@ You can choose a Product class
 * ~~add product_id of to be assembled product as custom option in assembly service product~~
 * ~~display pulldown with Delivery Categories and postcode~~
 * ~~change select in product assembly service to searchbale field~~
-* make **attribute products Product Class** visible/dependent on selection of assembly service
 * ~~display block assembly service in modal field~~
-* only show modal if the assembly service for the current product has not been added to cart
 * ~~show image for assembly service~~
 * ~~add new row and edit in admin grid~~
 * ~~add assembly service on ad to cart~~
-~~* Configuration instructions~~
-* event "to cart added" triggers Assembly servive Modal
-* check new product bug
-* check if all five digits have been entered to postcode
-* make postcode mandatory before add to catt function
-* !!! exclude the custon option postcode from verification so it can be added to cart !!!
+* ~~Configuration instructions~~
+* ~~check new product bug~~
+* ~~check if all five digits have been entered to postcode~~
+* ~~make postcode mandatory before add to catt function~~
+* only show modal if the assembly service for the current product has not been added to cart
+* make **attribute products Product Class** visible/dependent on selection of assembly service
