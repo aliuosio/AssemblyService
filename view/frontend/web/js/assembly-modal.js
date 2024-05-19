@@ -18,12 +18,14 @@ require(
             }]
         };
 
+        // Modal open
         let $myModal = $('#product-assembly-service');
-        if ($myModal.length) {
+        $('#product-addtocart-button').on('click', function (event) {
             let popup = modal(options, $myModal);
             $myModal.modal('openModal');
-        }
+        });
 
+        // Modal close
         $('button#assembly-cart-add').on('click', function (event) {
             if (typeof postcode_js === 'undefined') {
                 $myModal.modal('closeModal');
