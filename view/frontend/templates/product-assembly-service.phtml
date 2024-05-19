@@ -13,34 +13,32 @@ try {
 }
 ?>
 <?php if (isset($assemblyProduct) && $config->isEnabled() && $block->hasParentAssemblyService()): ?>
-    <div id="product-assembly-service" class="closed hidden">
+    <div id="product-assembly-service" style="display: none;">
         <form id="assembly-service" data-role="tocart-form" action="<?php try {
             echo $block->getAddToCartUrl();
         } catch (NoSuchEntityException $e) {
         } ?>" method="post">
+            <div class="product-image" id="assembly-image">
 
-            <?php
-            if ($assemblyProduct->getImage()):
+            <?php if ($assemblyProduct->getImage()):
                 $imageHelper = $this->helper('Magento\Catalog\Helper\Image')
                     ->init($assemblyProduct, 'thumbnail')
                     ->setImageFile($assemblyProduct->getImage());
 
-                // Set desired dimensions
                 $width = 200; // Desired width
                 $height = 200; // Desired height
 
                 $resizedImage = $imageHelper->resize($width, $height);
                 ?>
-                <div class="product-image" style="width: 50%; float: left">
                     <img src="<?php echo $resizedImage->getUrl(); ?>"
                          width="<?php echo $width; ?>"
                          height="<?php echo $height; ?>"
                          alt="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>"
                          title="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>" />
-                </div>
             <?php endif; ?>
+            </div>
 
-            <div class="price-box price-final_price" style="width: 50%; float: right"
+            <div class="price-box price-final_price" id="assembly-price"
                  data-role="priceBox"
                  data-product-id="<?php echo $assemblyProduct->getId() ?>"
                  data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
@@ -80,18 +78,13 @@ try {
             </div>
         </form>
     </div>
-<?php endif; ?>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "BIWAC_AssemblyService/js/classToPostcodePrice": {},
-            "BIWAC_AssemblyService/js/assembly-modal": {},
-            "BIWAC_AssemblyService/js/postcode-validation": {}
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "BIWAC_AssemblyService/js/classToPostcodePrice": {},
+                "BIWAC_AssemblyService/js/assembly-modal": {},
+                "BIWAC_AssemblyService/js/postcode-validation": {}
+            }
         }
-    }
-</script>
-<script type="javascript">
-    require(['jquery', 'postcode'], function ($, postcode) {
-        postcode();
-    });
-</script>
+    </script>
+<?php endif; ?>

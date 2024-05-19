@@ -1,11 +1,27 @@
-## Assembly Service
+# Assembly Service
  
+## Installation
     composer config minimum-stability dev \
         && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
         && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
         && composer require biwac/magento-assembly-service:dev-develop openstream/mage2-locale-de-ch\
         && bin/magento setup:upgrade \
         && bin/magento cache:clean;
+
+## Configuration
+    Backend 
+    Shop -> Configuration
+    Tab: BIWAC -> Assembly Service
+
+### Adminstration Postcode to Price
+    Catalog -> Product Class to Postcode
+
+### Asignment Assemby Service to Product
+On the Product Edit page in Backend there is Group now called Assembly Service
+If you only have an assembly service use the checkbox.
+If there aso the option of the product being delivered. 
+You can choose a Product class
+    
 
 ### TODOS
 * ~~add config to turn module turn module on/off~~
@@ -24,9 +40,11 @@
 * ~~display block assembly service in modal field~~
 * only show modal if the assembly service for the current product has not been added to cart
 * ~~show image for assembly service~~
-* !!! exclude the custon option postcode from verification so it can be added to cart !!!
-* add new row and edit in admin grid
-* add assembly service on ad to cart
+* ~~add new row and edit in admin grid~~
+* ~~add assembly service on ad to cart~~
+~~* Configuration instructions~~
+* event "to cart added" triggers Assembly servive Modal
+* check new product bug
 * check if all five digits have been entered to postcode
-* create unit test
-* create integration tests
+* make postcode mandatory before add to catt function
+* !!! exclude the custon option postcode from verification so it can be added to cart !!!
