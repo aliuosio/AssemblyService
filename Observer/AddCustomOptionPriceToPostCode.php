@@ -58,10 +58,16 @@ class AddCustomOptionPriceToPostCode implements ObserverInterface
     {
         $options = $this->request->getParam('options');
 
-        return $this->productClassFactory->create()
-            ->getPostcodePrice(
-                $options[4],
-                $options[3]
-            );
+        if (isset($options[4]) && isset($options[3])) {
+            $result = $this->productClassFactory->create()
+                ->getPostcodePrice(
+                    $options[4],
+                    $options[3]
+                );
+        } else {
+            $result = false;
+        }
+
+        return $result;
     }
 }

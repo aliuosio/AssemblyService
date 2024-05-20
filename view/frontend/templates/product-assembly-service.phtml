@@ -7,7 +7,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 $config = $block->getConfig();
 try {
     $assemblyProduct = $block->getProduct();
-    $classId = $block->getParentProduct()->getData($config->getProductClass());
 } catch (NoSuchEntityException $e) {
     echo $e->getMessage();
 }
@@ -26,8 +25,8 @@ try {
                     ->init($assemblyProduct, 'thumbnail')
                     ->setImageFile($assemblyProduct->getImage());
 
-                $width = 200; // Desired width
-                $height = 200; // Desired height
+                $width = 200;
+                $height = 200;
 
                 $resizedImage = $imageHelper->resize($width, $height);
                 ?>
@@ -49,12 +48,11 @@ try {
 
             <div class="product-options-wrapper" id="product-options-wrapper">
                 <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?> /">
-                <input type="hidden" id="current-product-id"
-                       value="<?php echo $block->getParentProduct()->getId(); ?>"/>
+                <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>"/>
                 <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>"/>
-                <input type="hidden" name="class-id" id="class-id" value="<?php echo $classId; ?>"/>
+                <input type="hidden" name="class-id" id="class-id" value="<?php echo $block->getParentClassId(); ?>"/>
 
-                <?php if ($classId > 0): ?>
+                <?php if ($block->getParentClassId() > 0): ?>
                     <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
                     <input type="number"
                            name="options[4]"

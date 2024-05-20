@@ -117,16 +117,27 @@ class ProductAssemblyService extends Template
      */
     public function getAssemblyCustomOptions(): array
     {
+
+        $filterOut = ['postcode', 'class-id'];
+
         $customOptions = [];
         $options = $this->getProduct()->getOptions();
 
         for ($i = 0; $i < count($options); $i++) {
+            if ($this->getParentClassId() == 0 && in_array($options[$i]->getTitle(), $filterOut)) {
+                continue;
+            }
             $customOptions[$options[$i]->getId()] = $this->getOptionValues()[$i];
         }
 
         return $customOptions;
     }
 
+    public function getParentClassId(): int
+    {
+        return (int)$this->getParentProduct()
+            ->getData($this->config->getProductClass());
+    }
 
     /**
      * @throws NoSuchEntityException
