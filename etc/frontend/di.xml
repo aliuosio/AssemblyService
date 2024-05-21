@@ -12,10 +12,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <!-- remove product link on assembly service from cart -->
     <type name="Magento\Checkout\Block\Cart\Item\Renderer">
         <plugin name="remove_product_link_from_cart"
                 sortOrder="100"
                 disabled="false"
                 type="BIWAC\AssemblyService\Plugin\RemoveProductLinkFromCart"/>
     </type>
+
+    <!-- remove product link on assembly service from minicart -->
+    <preference for="Magento\Checkout\CustomerData\DefaultItem"
+                type="BIWAC\AssemblyService\Override\Magento\Checkout\CustomerData\DefaultItem"/>
+
 </config>
