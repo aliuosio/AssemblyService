@@ -40,34 +40,12 @@ class DefaultItem extends DefaultItemAOriginal
 
     protected function hasProductUrl(): bool
     {
-        if ($this->item->getRedirectUrl()) {
-            return true;
+        $result = parent::hasProductUrl();
+
+        if ($this->config->getSKU() == $this->item->getProduct()->getSku()) {
+            $result = false;
         }
 
-        $product = $this->item->getProduct();
-
-        /** ovverride START */
-        if ($this->config->getSKU() == $product->getSku()) {
-            return false;
-        }
-        /** ovverride END */
-
-        $option = $this->item->getOptionByCode('product_type');
-        if ($option) {
-            $product = $option->getProduct();
-        }
-
-        if ($product->isVisibleInSiteVisibility()) {
-            return true;
-        } else {
-            if ($product->hasUrlDataObject()) {
-                $data = $product->getUrlDataObject();
-                if (in_array($data->getVisibility(), $product->getVisibleInSiteVisibilities())) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return $result;
     }
 }
