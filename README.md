@@ -44,5 +44,5 @@ You can choose a Product class
 * ~~check new product bug~~
 * ~~check if all five digits have been entered to postcode~~
 * ~~make postcode mandatory before add to catt function~~
-* only show modal if the assembly service for the current product has not been added to cart
+* ~~only show modal if the assembly service for the current product has not been added to cart~~
 * make **attribute products Product Class** visible/dependent on selection of assembly service
