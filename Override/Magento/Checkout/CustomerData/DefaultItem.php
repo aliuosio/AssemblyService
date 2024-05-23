@@ -40,12 +40,10 @@ class DefaultItem extends DefaultItemAOriginal
 
     protected function hasProductUrl(): bool
     {
-        $result = parent::hasProductUrl();
-
         if ($this->config->getSKU() == $this->item->getProduct()->getSku()) {
-            $result = false;
+            return false;
         }
 
-        return $result;
+        return parent::hasProductUrl();
     }
 }
