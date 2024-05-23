@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author     Osiozekhai Aliu
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="customPriceInCart" instance="BIWAC\AssemblyService\Observer\AddCustomOptionPriceToPostCode"/>
+    </event>
+</config>

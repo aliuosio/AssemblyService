@@ -1,0 +1,98 @@
+<?php
+/** @var ProductAssemblyService $block */
+
+use BIWAC\AssemblyService\Block\ProductAssemblyService;
+use Magento\Framework\Exception\NoSuchEntityException;
+
+$config = $block->getConfig();
+try {
+    $assemblyProduct = $block->getProduct();
+} catch (NoSuchEntityException $e) {
+    echo $e->getMessage();
+}
+
+?>
+<?php if (isset($assemblyProduct) && $config->isEnabled() && $block->hasParentAssemblyService()): ?>
+    <div id="product-assembly-service">
+        <form id="assembly-service" data-role="tocart-form" action="<?php try {
+            echo $block->getAddToCartUrl();
+        } catch (NoSuchEntityException $e) {
+        } ?>" method="post">
+            <div class="product-image" id="assembly-image">
+
+            <?php if ($assemblyProduct->getImage()):
+                $imageHelper = $this->helper('Magento\Catalog\Helper\Image')
+                    ->init($assemblyProduct, 'thumbnail')
+                    ->setImageFile($assemblyProduct->getImage());
+
+                $width = 200;
+                $height = 200;
+
+                $resizedImage = $imageHelper->resize($width, $height);
+                ?>
+                    <img src="<?php echo $resizedImage->getUrl(); ?>"
+                         width="<?php echo $width; ?>"
+                         height="<?php echo $height; ?>"
+                         alt="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>"
+                         title="<?php echo $block->escapeHtml($assemblyProduct->getName()); ?>" />
+            <?php endif; ?>
+            </div>
+
+            <div class="price-box price-final_price" id="assembly-price"
+                 data-role="priceBox"
+                 data-product-id="<?php echo $assemblyProduct->getId() ?>"
+                 data-price-box="product-id-<?php echo $assemblyProduct->getId() ?>">
+                <span class="price-container price-final_price"
+                      id="price-boxer"><?php echo $block->getPriceFormattted($assemblyProduct->getPrice()); ?></span>
+            </div>
+
+            <div class="product-options-wrapper" id="product-options-wrapper">
+                <input type="hidden" id="current-product-name" value="<?php echo $assemblyProduct->getName(); ?> /">
+                <input type="hidden" id="current-product-id" value="<?php echo $block->getParentProduct()->getId(); ?>"/>
+                <input type="hidden" id="current-product-price" value="<?php echo $assemblyProduct->getPrice(); ?>"/>
+                <input type="hidden" name="class-id" id="class-id" value="<?php echo $block->getParentClassId(); ?>"/>
+
+                <?php if ($block->getParentClassId() > 0): ?>
+                    <label for="<?php echo $config->getAssemblyOptionCode(); ?>">Postcode: </label>
+                    <input type="number"
+                           name="options[4]"
+                           value=""
+                           id="<?php echo $config->getAssemblyOptionCode(); ?>"
+                           width="5" minlength="5" maxlength="5" style="width: 80px"/>
+                    <div id="assembly-error"></div>
+                    <span class="postcode-price"></span>
+                    <script type="text/x-magento-init">
+                        {
+                            "*": {
+                                "BIWAC_AssemblyService/js/postcode-price": {},
+                                "BIWAC_AssemblyService/js/postcode-validation": {}
+                            }
+                        }
+                    </script>
+                <?php endif; ?>
+
+            </div>
+
+            <?php echo $block->getBlockHtml('formkey') ?>
+            <div class="box-tocart">
+                <div class="actions">
+                    <div class="btn" style="margin-top: 20px;">
+                        <button id="assembly-cart-add"
+                                type="submit"
+                                title="Add to Cart"
+                                class="action tocart primary">
+                            <span><?php echo __('Add to Cart'); ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "BIWAC_AssemblyService/js/assembly-modal": {}
+            }
+        }
+    </script>
+<?php endif; ?>

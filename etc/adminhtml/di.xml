@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author     Osiozekhai Aliu
+ * @package    BIWAC_AssemblyService
+ * @copyright  Copyright (c) 2024 BIWAC
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+        <plugin name="disable_assembly_product_plugin"
+                sortOrder="100"
+                disabled="false"
+                type="BIWAC\AssemblyService\Plugin\Adminhtml\DisableAssemblyServiceGroupInProductEdit"/>
+    </type>
+
+</config>
