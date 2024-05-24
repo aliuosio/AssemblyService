@@ -9,7 +9,7 @@ define(['jquery'], function ($) {
         var postcode = $('#postcode').val();
         var assemblyError = $('#assembly-error');
 
-        if (postcode.length >= 5) {
+        if (postcode.length >= 4) {
             $.ajax({
                 url: '/postcodes/price/index',
                 type: 'POST',
