@@ -10,7 +10,7 @@
 
 ### if server is in magento 2 production mode also run
     bin/magento setup:di:compile
-    bin/magento setup:static-content:deploy                     
+    && bin/magento setup:static-content:deploy                     
 
 ## Configuration
     Backend 
