@@ -9,11 +9,12 @@
         && bin/magento cache:clean;
 
 ### if server is in magento 2 production mode also run
-    rm -rf var/di var/generation generated/*\
-    && composer update -W \
-    && bin/magento setup:di:compile \
-    && bin/magento setup:static-content:deploy -f \
-    && bin/magento cache:flush             
+    rm -rf var/di var/generation generated/* \
+        && composer update -W \
+        && bin/magento setup:upgrade \
+        && bin/magento setup:di:compile \
+        && bin/magento setup:static-content:deploy -f \
+        && bin/magento cache:flush;
 
 ## Configuration
     Backend 
