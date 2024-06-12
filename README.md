@@ -4,9 +4,13 @@
     composer config minimum-stability dev \
         && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
         && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
-        && composer require biwac/magento-assembly-service:dev-main openstream/mage2-locale-de-ch \
+        && composer require biwac/magento-assembly-service:dev-main \
         && bin/magento setup:upgrade \
         && bin/magento cache:clean;
+
+### if server is in magento 2 production mode also run
+    bin/magento setup:di:compile
+    bin/magento setup:static-content:deploy                     
 
 ## Configuration
     Backend 
