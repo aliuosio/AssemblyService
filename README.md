@@ -6,13 +6,12 @@
         && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
         && composer require biwac/magento-assembly-service:dev-main \
         && bin/magento setup:upgrade \
-        && bin/magento cache:clean;
+        && bin/magento cache:flush;
 
 ### if server is in magento 2 production mode also run
-    composer update -W \
+    composer u -W \    
         && bin/magento setup:upgrade \
-        && bin/magento setup:di:compile \
-        && bin/magento setup:static-content:deploy \
+        && bin/magento deploy:mode:set production \
         && bin/magento cache:flush;
 
 ## Configuration
