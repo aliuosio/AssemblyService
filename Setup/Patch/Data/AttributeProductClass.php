@@ -27,22 +27,33 @@ class AttributeProductClass implements DataPatchInterface
 
     private function getAttributeProperties(): array
     {
+        
         return [
-            'type' => 'int',
-            'label' => self::LABEL,
-            'input' => 'select',
-            'source' => 'BIWAC\ProductClassToPostcode\Model\AttributeValues\Source\ProductClass',
-            'required' => false,
-            'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
-            'visible' => true,
-            'user_defined' => true,
-            'searchable' => false,
-            'filterable' => false,
-            'comparable' => false,
-            'visible_on_front' => false,
-            'used_in_product_listing' => true,
-            'unique' => false
-        ];
+                'type' => 'int',
+                'label' => self::LABEL,
+                'input' => 'select',
+                'source' => \BIWAC\ProductClassToPostcode\Model\Product\Attribute\Source\ProductClass::class,
+                'frontend' => '',
+                'required' => false,
+                'backend' => '',
+                'sort_order' => '30',
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
+                'default' => null,
+                'visible' => true,
+                'user_defined' => true,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'unique' => false,
+                'apply_to' => '',
+                'group' => 'General',
+                'used_in_product_listing' => false,
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => false,
+                'is_filterable_in_grid' => false,
+                'option' => ''
+                ];
     }
 
     /**
