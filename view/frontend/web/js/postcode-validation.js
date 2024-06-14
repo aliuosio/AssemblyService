@@ -19,13 +19,14 @@ define(['jquery'], function ($) {
                     if (!postcodeValue) {
                         $('.postcode-price').hide();
                         message = $.mage.__('Please enter a valid postcode');
+                        event.preventDefault();
                     } else if (postcodeValue.length < 4) {
                         $('.postcode-price').hide();
                         message = $.mage.__('Postcode must be at least 4 characters long');
+                        event.preventDefault();
                     }
 
                     if (message) {
-                        event.preventDefault();
                         assemblyError.text(message).show();
                         postcodeInput.focus();
                     } else {
