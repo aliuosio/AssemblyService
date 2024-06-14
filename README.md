@@ -1,5 +1,5 @@
 # Assembly Service
- 
+
 ## Installation
     composer config minimum-stability dev \
     && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
