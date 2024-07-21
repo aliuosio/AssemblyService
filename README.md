@@ -1,7 +1,7 @@
 # Assembly Service
 
 ## Installation
-    composer require biwac/magento-assembly-service \
+    composer require aliuosio/magento-assembly-service \
     && bin/magento setup:upgrade \
     && bin/magento cache:flush;
 
