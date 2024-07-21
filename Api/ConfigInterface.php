@@ -1,27 +1,28 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
- * @copyright  Copyright (c) 2024 BIWAC
+ * @package    Osio_AssemblyService
+ * @copyright  Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BIWAC\AssemblyService\Api;
+namespace Osio\AssemblyService\Api;
 
 
 interface ConfigInterface
 {
-    public const ENABLED = 'BIWAC/settings/enabled';
-    public const GROUP_KEY = 'BIWAC/settings/product_edit/group_key';
-    public const SKU = 'BIWAC/settings/product/sku';
-    public const ATTRIBUTE_ASSEMBLY = 'BIWAC/settings/product/attribute_name';
-    public const PRODUCT_CLASS = 'BIWAC/settings/product/class';
-    public const ASSEMBLY_PRICE = 'BIWAC/settings/assembly/price';
-    public const ASSEMBLY_OPTION_CODE = 'BIWAC/settings/assembly/options/code';
-    public const ASSEMBLY_OPTION_PRICE= 'BIWAC/settings/assembly/options/price';
-    public const ASSEMBLY_OPTIONS= 'BIWAC/settings/assembly/options';
+    public const ENABLED = 'Osio/settings/enabled';
+    public const GROUP_KEY = 'Osio/settings/product_edit/group_key';
+    public const SKU = 'Osio/settings/product/sku';
+    public const NAME = 'Osio/settings/product/name';
+    public const ATTRIBUTE_ASSEMBLY = 'Osio/settings/product/attribute_name';
+    public const PRODUCT_CLASS = 'Osio/settings/product/class';
+    public const ASSEMBLY_PRICE = 'Osio/settings/assembly/price';
+    public const ASSEMBLY_OPTION_CODE = 'Osio/settings/assembly/options/code';
+    public const ASSEMBLY_OPTION_PRICE= 'Osio/settings/assembly/options/price';
+    public const ASSEMBLY_OPTIONS= 'Osio/settings/assembly/options';
 
     public function isEnabled(): bool;
 
@@ -40,5 +41,7 @@ interface ConfigInterface
     public function getAssemblyOptionPrice(): string;
 
     public function getAssemblyOptions(): array;
+
+    public function getName(): string;
 
 }

@@ -1,25 +1,25 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
- * @copyright  Copyright (c) 2024 BIWAC
+ * @package    Osio_AssemblyService
+ * @copyright  Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BIWAC\AssemblyService\Setup\Patch\Data;
+namespace Osio\AssemblyService\Setup\Patch\Data;
 
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Validator\ValidateException;
-use BIWAC\AssemblyService\Setup\AttributeAdd;
+use Osio\AssemblyService\Setup\AttributeAdd;
 
 class AttributeProductClass implements DataPatchInterface
 {
-    const LABEL = 'Product Class';
-    const CODE = 'product_class';
+    const string LABEL = 'Product Class';
+    const string CODE = 'product_class';
 
     public function __construct(
         readonly private AttributeAdd $attributeAdd
@@ -27,12 +27,12 @@ class AttributeProductClass implements DataPatchInterface
 
     private function getAttributeProperties(): array
     {
-        
+
         return [
                 'type' => 'int',
                 'label' => self::LABEL,
                 'input' => 'select',
-                'source' => \BIWAC\ProductClassToPostcode\Model\Product\Attribute\Source\ProductClass::class,
+                'source' => \Osio\ProductClassToPostcode\Model\Product\Attribute\Source\ProductClass::class,
                 'frontend' => '',
                 'required' => false,
                 'backend' => '',

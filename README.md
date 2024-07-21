@@ -1,23 +1,15 @@
 # Assembly Service
 
 ## Installation
-    composer config minimum-stability dev \
-    && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
-    && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
-    && composer require biwac/magento-assembly-service:dev-main \
+    composer require biwac/magento-assembly-service \
     && bin/magento setup:upgrade \
     && bin/magento cache:flush;
 
-### if server is in magento 2 production mode also run
-    composer u -W \
-    && bin/magento setup:upgrade \
-    && bin/magento deploy:mode:set production \
-    && bin/magento cache:flush;
 
 ## Configuration
     Backend 
     Shop -> Configuration
-    Tab: BIWAC -> Assembly Service
+    Tab: Osio -> Assembly Service
 
 ### Adminstration Postcode to Price
     Catalog -> Product Class to Postcode

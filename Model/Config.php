@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
+ * @package    Osio_AssemblyService
  * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
  *
  * For the full copyright and license information, please view the LICENSE
@@ -9,9 +9,9 @@
  */
 
 
-namespace BIWAC\AssemblyService\Model;
+namespace Osio\AssemblyService\Model;
 
-use BIWAC\AssemblyService\Api\ConfigInterface;
+use Osio\AssemblyService\Api\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config implements ConfigInterface
@@ -34,6 +34,11 @@ class Config implements ConfigInterface
     public function getSKU(): string
     {
         return $this->scopeConfig->getValue(self::SKU);
+    }
+
+    public function getName(): string
+    {
+        return $this->scopeConfig->getValue(self::NAME);
     }
 
     public function getAssemblyServicePrice(): string

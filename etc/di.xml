@@ -2,7 +2,7 @@
 <!--
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
+ * @package    Osio_AssemblyService
  * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
  *
  * For the full copyright and license information, please view the LICENSE
@@ -11,6 +11,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="BIWAC\AssemblyService\Api\ConfigInterface"
-                type="BIWAC\AssemblyService\Model\Config"/>
+    <preference for="Osio\AssemblyService\Api\ConfigInterface"
+                type="Osio\AssemblyService\Model\Config"/>
 </config>

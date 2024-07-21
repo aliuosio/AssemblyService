@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
+ * @package    Osio_AssemblyService
  * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
  *
  * For the full copyright and license information, please view the LICENSE
@@ -10,7 +10,7 @@
  */
 
 
-namespace BIWAC\AssemblyService\Plugin;
+namespace Osio\AssemblyService\Plugin;
 
 use Magento\Quote\Model\Quote\Item;
 
