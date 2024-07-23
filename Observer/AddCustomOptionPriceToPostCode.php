@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
- * @copyright  Copyright (c) 2024 BIWAC
+ * @package    Osio_AssemblyService
+ * @copyright  Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 
-namespace BIWAC\AssemblyService\Observer;
+namespace Osio\AssemblyService\Observer;
 
-use BIWAC\AssemblyService\Api\ConfigInterface;
-use BIWAC\ProductClassToPostcode\Model\ProductClassFactory;
+use Osio\AssemblyService\Api\ConfigInterface;
+use Osio\ProductClassToPostcode\Model\ProductClassFactory;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Event\Observer;

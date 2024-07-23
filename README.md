@@ -1,17 +1,24 @@
 # Assembly Service
- 
+
+Assembly Service Integration for Product Detail Page
+This project provides an assembly service integration for product detail pages, with dynamic pricing based on product complexity and customer postcode.
+
+Features:
+* Dynamic Pricing: Calculate assembly service fees based on the difficulty of the product and the customer's postcode.
+* Easy Integration: Seamlessly integrate with your existing product detail page.
+* User-Friendly: Ensure a smooth user experience with clear pricing information and service details.
+
+
 ## Installation
-    composer config minimum-stability dev \
-        && composer config repositories.assembly git https://github.com/aliuosio/AssemblyService.git \
-        && composer config repositories.class git https://github.com/aliuosio/ProductClassToPostcode.git \
-        && composer require biwac/magento-assembly-service:dev-main openstream/mage2-locale-de-ch \
-        && bin/magento setup:upgrade \
-        && bin/magento cache:clean;
+    composer require aliuosio/magento-assembly-service \
+    && bin/magento setup:upgrade \
+    && bin/magento cache:flush;
+
 
 ## Configuration
     Backend 
     Shop -> Configuration
-    Tab: BIWAC -> Assembly Service
+    Tab: Osio -> Assembly Service
 
 ### Adminstration Postcode to Price
     Catalog -> Product Class to Postcode

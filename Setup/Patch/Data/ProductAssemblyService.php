@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace BIWAC\AssemblyService\Setup\Patch\Data;
+namespace Osio\AssemblyService\Setup\Patch\Data;
 
-use BIWAC\AssemblyService\Api\ConfigInterface;
+use Osio\AssemblyService\Api\ConfigInterface;
 use Magento\Catalog\Api\Data\ProductCustomOptionInterfaceFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
@@ -23,19 +23,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 class ProductAssemblyService implements DataPatchInterface
 {
 
-    /*
-     - add custom options to generated assembly service productt
-    Options
-
-    * product to assemble name X
-    * product to assemble sku X
-    * product to assemble class X
-    * customer postcode
-
-    product class and postcode price
-     */
-
-    const OPTIONS = [
+    const array OPTIONS = [
         '0' => [
             'sort_order' => '0',
             'title' => 'Name',
@@ -116,13 +104,13 @@ class ProductAssemblyService implements DataPatchInterface
     private function setProduct(): ProductInterface
     {
         $product = $this->productFactory->create();
-        $product->setName('Montage Service')
+        $product->setName($this->config->getName())
             ->setSku($this->config->getSKU())
             ->setPrice($this->config->getAssemblyServicePrice())
             ->setAttributeSetId(4)
             ->setStatus(Status::STATUS_ENABLED)
             ->setVisibility(Visibility::VISIBILITY_BOTH)
-            ->setTypeId('simple');
+            ->setTypeId('virtual');
 
         $this->productRepository->save($product);
 

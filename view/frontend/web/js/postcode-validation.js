@@ -23,7 +23,6 @@ define(['jquery'], function ($) {
                         $('.postcode-price').hide();
                         message = $.mage.__('Postcode must be at least 4 characters long');
                     }
-
                     if (message) {
                         event.preventDefault();
                         assemblyError.text(message).show();

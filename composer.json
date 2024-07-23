@@ -1,9 +1,9 @@
 {
-    "name": "biwac/magento-assembly-service",
+    "name": "aliuosio/magento-assembly-service",
     "description": "Assembly Service",
     "type": "magento2-module",
     "license": "proprietary",
-    "version": "dev-main",
+    "version": "0.1.4",
     "authors": [
         {
             "name": "Osiozekhai Aliu"
@@ -12,14 +12,14 @@
     "require": {
         "php": "^8.1.0",
         "ext-pdo": "*",
-        "biwac/magento-product-class-to-postcode": "dev-main"
+        "aliuosio/magento-product-class-to-postcode": "0.1.2"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "BIWAC\\AssemblyService\\": ""
+            "Osio\\AssemblyService\\": ""
         }
     }
 }

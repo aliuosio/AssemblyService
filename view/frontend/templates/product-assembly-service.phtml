@@ -1,7 +1,7 @@
 <?php
 /** @var ProductAssemblyService $block */
 
-use BIWAC\AssemblyService\Block\ProductAssemblyService;
+use Osio\AssemblyService\Block\ProductAssemblyService;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 $config = $block->getConfig();
@@ -62,8 +62,8 @@ try {
                     <script type="text/x-magento-init">
                         {
                             "*": {
-                                "BIWAC_AssemblyService/js/postcode-price": {},
-                                "BIWAC_AssemblyService/js/postcode-validation": {}
+                                "Osio_AssemblyService/js/postcode-price": {},
+                                "Osio_AssemblyService/js/postcode-validation": {}
                             }
                         }
                     </script>
@@ -89,7 +89,7 @@ try {
     <script type="text/x-magento-init">
         {
             "*": {
-                "BIWAC_AssemblyService/js/assembly-modal": {}
+                "Osio_AssemblyService/js/assembly-modal": {}
             }
         }
     </script>

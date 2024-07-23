@@ -2,7 +2,7 @@
 <!--
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
+ * @package    Osio_AssemblyService
  * @copyright  Copyright (c) 2024 Osiozekhai Aliu (https://github.com/aliuosio)
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,11 +17,11 @@
         <plugin name="remove_product_link_from_cart"
                 sortOrder="100"
                 disabled="false"
-                type="BIWAC\AssemblyService\Plugin\RemoveProductLinkFromCart"/>
+                type="Osio\AssemblyService\Plugin\RemoveProductLinkFromCart"/>
     </type>
 
     <!-- remove product link on assembly service from minicart -->
     <preference for="Magento\Checkout\CustomerData\DefaultItem"
-                type="BIWAC\AssemblyService\Override\Magento\Checkout\CustomerData\DefaultItem"/>
+                type="Osio\AssemblyService\Override\Magento\Checkout\CustomerData\DefaultItem"/>
 
 </config>

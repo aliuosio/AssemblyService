@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
- * @copyright  Copyright (c) 2024 BIWAC
+ * @package    Osio_AssemblyService
+ * @copyright  Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BIWAC\AssemblyService\Block;
+namespace Osio\AssemblyService\Block;
 
-use BIWAC\AssemblyService\Api\ConfigInterface;
+use Osio\AssemblyService\Api\ConfigInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Data\Form\FormKey;

@@ -1,8 +1,8 @@
 <?php
 
-namespace BIWAC\AssemblyService\Plugin;
+namespace Osio\AssemblyService\Plugin;
 
-use BIWAC\AssemblyService\Api\ConfigInterface;
+use Osio\AssemblyService\Api\ConfigInterface;
 use Magento\Checkout\Block\Cart\Item\Renderer;
 
 class RemoveProductLinkFromCart

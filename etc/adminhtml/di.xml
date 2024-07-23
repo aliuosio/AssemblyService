@@ -2,8 +2,8 @@
 <!--
 /**
  * @author     Osiozekhai Aliu
- * @package    BIWAC_AssemblyService
- * @copyright  Copyright (c) 2024 BIWAC
+ * @package    Osio_AssemblyService
+ * @copyright  Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,7 +16,7 @@
         <plugin name="disable_assembly_product_plugin"
                 sortOrder="100"
                 disabled="false"
-                type="BIWAC\AssemblyService\Plugin\Adminhtml\DisableAssemblyServiceGroupInProductEdit"/>
+                type="Osio\AssemblyService\Plugin\Adminhtml\DisableAssemblyServiceGroupInProductEdit"/>
     </type>
 
 </config>
